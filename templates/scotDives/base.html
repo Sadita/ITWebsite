@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html>
+    <head>
+        <title>
+            ScotDives
+            {% block title_block %}
+                Website
+            {% endblock %}
+        </title>
+        <!-- CSS -->
+        <link rel = "stylesheet" href="{% static 'css/base.css' %}" />
+        <link rel="stylesheet" href="{% static 'star-ratings/css/star-ratings.css' %}">
+        <script type="text/javascript" src="{% static 'star-ratings/js/dist/star-ratings.min.js' %}"></script>
+    </head>
+
+    <body>
+        <div>
+            <h1>ScotDives</h1>
+            <u1>
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'divemap' %}">Dive Map</a></li>
+                <li><a href="{% url 'divesites' %}">Dive Sites</a></li>
+                <li><a href="{% url 'clubmap' %}">Find a Club</a></li>
+                <li><a href="{% url 'photogallery' %}">Photo Gallery</a></li>
+                <li><a href="{% url 'search' %}">Search</a></li>
+            </u1>
+        </div>
+
+        <hr />
+
+        <div class="space-bottom">
+            {% block body_block %}
+            {% endblock %}
+        </div>
+
+        <div>
+            {% block sidebar_block %}
+            {% endblock %}
+        </div>
+
+        <hr />
+        <div>
+            <u1>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+                <li><a href="{% url 'sitemap' %}">Site Map</a></li>
+            </u1>
+        </div>
+
+
+
+
+    </body>
+</html>

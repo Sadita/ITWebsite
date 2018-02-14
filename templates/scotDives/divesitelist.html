@@ -1,0 +1,19 @@
+<u1>
+    {% if pages %}
+        {% for p in pages %}
+            {% if p == act_page %}
+                <li>
+                <strong>
+                    <a href="{% url 'show_page' p.slug %}">{{ p.name }}</a>
+                </strong>
+                </li>
+            {% else %}
+                <li>
+                    <a href="{% url 'show_page' p.slug %}">{{ p.name }}</a>
+                </li>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <li><strong>There are no pages present.</strong></li>
+    {% endif %}
+</u1>
