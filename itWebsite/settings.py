@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'star_ratings',
     'twitter_login',
     'social.apps.django_app.default',
+    'social_django',
 ]
 
 MIDDLEWARE = [
