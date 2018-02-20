@@ -9,6 +9,33 @@
 <div class="jumbotron">
     <h1 class="display-3">Welcome to ScotDives!</h1>
 </div>
+<div>
+Here is twitter follow button.
+</div>
+<a class="twitter-follow-button"
+  href="https://twitter.com/scotdives"
+  data-size="large">
+Follow @ScotDives</a>
+
+<h1>Welcome-imam test</h1>
+<p><a href="/scot-dives/logout">Logout</a>
+
+{% if user and not user.is_anonymous %}
+  <a>Hello, {{ user.get_full_name }}!</a>
+  <br>
+  <a href="/logout">Logout</a>
+{% else %}
+
+  <a href="/scot-dives/login">Login with Twitter</a>
+{% endif %}
+
+
+<div>
+Here is twitter feed.
+</div>
+
+
+<a class="twitter-timeline" href="https://twitter.com/ScotDives?ref_src=twsrc%5Etfw">Tweets by ScotDives</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
         <div class="space-topbottom">
             <h4>About</h4>

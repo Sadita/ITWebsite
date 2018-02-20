@@ -9,6 +9,9 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
+#--imam--
+from config import *
+#--------
 
 import os
 
@@ -47,7 +50,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scotDives',
-    'star_ratings'
+    'star_ratings',
+    'twitter_login',
+    'social.apps.django_app.default',
 ]
 
 MIDDLEWARE = [
@@ -69,12 +74,23 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
+                #'django.template.context_processors.debug',
+                #'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'django.template.context_processors.media',
-                'django.template.context_processors.request'
+                #'django.template.context_processors.media',
+                #'django.template.context_processors.request'
+                
+                #imam(twitter_login)
+                'django.contrib.auth.context_processors.auth',
+                #'django.core.context_processors.debug',
+                #'django.core.context_processors.i18n',
+                #'django.core.context_processors.media',
+                #'django.core.context_processors.static',
+                #'django.core.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -143,3 +159,11 @@ LOGIN_URL = '/scot-dives/login/'
 
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 #SESSION_COOKIE_AGE = 1209600
+
+#imam(twitter_login)
+AUTHENTICATION_BACKENDS = (
+    'social.backends.facebook.FacebookOAuth2',
+    'social.backends.google.GoogleOAuth2',
+    'social.backends.twitter.TwitterOAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)

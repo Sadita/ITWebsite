@@ -10,4 +10,8 @@ urlpatterns = [
     url(r'^search/', views.search, name='search'),
     url(r'^contact-us/', views.contact, name='contact'),
     url(r'^sitemap/', views.sitemap, name='sitemap'),
+
+    #--imam--
+    url(r'^login/', views.login, name='login'),
+    url(r'^logout/', views.logout, name='logout'),
 ]

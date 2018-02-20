@@ -1,0 +1,29 @@
+{% extends "rango/base.html" %}
+{% load staticfiles %}
+
+{% block title_block %}
+TwitterFeed
+
+
+{% endblock %}
+
+{% block body_block %}
+
+<h1>Rango says...</h1>
+
+<div>
+Rango says here is twitter follow button.
+</div>
+<a class="twitter-follow-button"
+  href="https://twitter.com/scotdives"
+  data-size="large">
+Follow @ScotDives</a>
+
+<div>
+Rango says here is twitter feed.
+</div>
+
+
+<a class="twitter-timeline" href="https://twitter.com/ScotDives?ref_src=twsrc%5Etfw">Tweets by ScotDives</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+{% endblock %}
