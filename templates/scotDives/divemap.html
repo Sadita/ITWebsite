@@ -6,12 +6,54 @@
 {% endblock %}
 
 {% block body_block %}
+
         <h1>
             Dive Map
         </h1>
+    <style>
+       #map {
+        height: 600px;
+        width: 800px;
+       }
+    </style>
+
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        var uluru = {lat: 56.279647, lng: -2.592236};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 56.279647, lng: -2.592236}
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+        {% if all_diveSpots %}
+            {% for divespot in all_diveSpots %}
+             var contentString = '<b>{{ divespot.name }}</b></br> ' + '{{ divespot.description }}</br> ' + '{{ divespot.rating }}</br>' + ' <a href="{{ divespot.link }}">Go to page</a>'
 
 
+             var marker = new google.maps.Marker({
+                position: {lat: {{ divespot.latitude }}, lng: {{ divespot.longitude }}},
+                map: map,
+	            title: '{{ divespot.name }}',
+                 url: '{{ divespot.link }}',
+                 contentBox: contentString
+            });
 
+	        google.maps.event.addListener(marker, 'click', function() {
+                 infowindow.setContent(this.contentBox);
+                 infowindow.open(map, this);
+            });
+            {% endfor %}
+        {% endif %}
+      }
+
+    </script>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSUTagss3J4yDnZKDpKpLsKBFQyOwADYo&callback=initMap">
+    </script>
 
 
 {% endblock %}

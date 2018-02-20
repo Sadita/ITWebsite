@@ -6,12 +6,92 @@
 {% endblock %}
 
 {% block body_block %}
+
         <h1>
             Club Map
         </h1>
+    <style>
+       #map {
+        height: 600px;
+        width: 800px;
+       }
+    .column {
+        margin-left: 100px;
+    }
+
+       .left {
+      margin-left: 30px;
+    }
+
+    .right {
+      margin-left: 50px;
+    }
+
+    </style>
+        <div class="row">
+            <div class="column left">
+                {% if all_diveClubs %}
+                    <ul>
+                        {% for diveClub in all_diveClubs %}
+                            <li><a color="blue" onclick="myFunction('{{ diveClub.name }}')" onmouseover="" style="cursor: pointer;"><b><font color="blue">{{ diveClub.name }}</font></b> </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+            <div class="column right">
+                <div id="map"></div>
+            </div>
+        </div>
+    <script>
+
+        var marker;
+        var markers = [];
+      function initMap() {
+        var uluru = {lat: 56.279647, lng: -2.592236};
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 7,
+          center: {lat: 56.279647, lng: -2.592236}
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+        {% if all_diveClubs %}
+            {% for diveClub in all_diveClubs %}
+             var contentString = '{{ diveClub.description }}' + ' <a href="{{ diveClub.link }}">Click</a>'
+
+                marker = new google.maps.Marker({
+                    position: {lat: {{ diveClub.latitude }}, lng: {{ diveClub.longitude }}},
+                    map: map,
+                    title: '{{ diveClub.name }}',
+                    url: '{{ diveClub.link }}',
+                    icon: 'https://www.google.com/mapfiles/marker_yellow.png',
+                     //'https://www.google.com/mapfiles/marker_green.png',
+                    //https://stackoverflow.com/questions/31196426/change-marker-color-onclick
+                });
 
 
 
+	            markers.push(marker)
+            {% endfor %}
+        {% endif %}
+      }
+
+      function myFunction(clubname) {
+        //document.getElementById("demo").innerHTML = "Hello World";
+          markers.forEach(function(entry) {
+              entry.setIcon('https://www.google.com/mapfiles/marker_yellow.png');
+              if (clubname == entry.title) {
+                  entry.setIcon('https://www.google.com/mapfiles/marker_green.png');
+              }
+          });
+          //alert(markers[0].title);
+      }
+
+    </script>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSUTagss3J4yDnZKDpKpLsKBFQyOwADYo&callback=initMap">
+    </script>
 
 
 {% endblock %}

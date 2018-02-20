@@ -6,7 +6,38 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
+#imam---
+from django.shortcuts import render_to_response, redirect, render
+from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.decorators import login_required
+# from django.template.context import RequestContext
+from .models import DiveSpot, DiveClub
 
+
+def login(request):
+    # context = RequestContext(request, {
+    #     'request': request, 'user': request.user})
+    # return render_to_response('login.html', context_instance=context)
+    context_dict = {}
+    response = render(request, 'scotDives/login.html', context=context_dict)
+    # Return response back to the user, updating any cookies that need changed.
+    return response
+
+
+@login_required(login_url='/')
+def home(request):
+    context_dict = {}
+    response = render(request, 'scotDives/home.html', context=context_dict)
+    # Return response back to the user, updating any cookies that need changed.
+    return response
+
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('/')
+
+#imam---
 
 def index(request):
     # request.session.set_test_cookie()
@@ -23,10 +54,8 @@ def index(request):
     return response
 
 def divemap(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
-    context_dict = {}
+    all_diveSpots = DiveSpot.objects.all()
+    context_dict = {'all_diveSpots' : all_diveSpots,}
 
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)
@@ -51,10 +80,8 @@ def divesites(request):
     return response
 
 def clubmap(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
-    context_dict = {}
+    all_diveClubs = DiveClub.objects.all()
+    context_dict = {'all_diveClubs' : all_diveClubs,}
 
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)

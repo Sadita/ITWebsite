@@ -20,6 +20,7 @@ from django.contrib import admin
 from django.conf.urls import include
 from scotDives import views
 
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'scot-dives/', include('scotDives.urls')),
@@ -27,5 +28,11 @@ urlpatterns = [
     # with scot-dives/ to be handled by
     # the scotDives application
     url(r'^admin/', admin.site.urls),
+
+    #--imam--
+    url('', include('social.apps.django_app.urls', namespace='social')),
+
+
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
