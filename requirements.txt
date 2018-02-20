@@ -5,15 +5,6 @@ django-star-ratings==0.6.1
 Pillow==5.0.0
 pytz==2018.3
 swapper==1.1.0
-
-#imam
-create su: imam
-su pass: imamreizafahlevi
-su email: imam@imam.com
-
-package:
 pyjwkest==1.4.0
-#this part drive me crazy. so to make this run. install 0.2.1 then migrate. after that install 0.3.6
-python-social-auth==0.2.1
 python-social-auth==0.3.6
 
