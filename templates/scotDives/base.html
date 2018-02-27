@@ -19,6 +19,8 @@
         <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href=
            "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+
+
     </head>
 
 <body>
@@ -65,7 +67,7 @@
                     Search
                 </a>
             </li>
-        </u1>
+        </ul>
     </div>
 </nav>
 
@@ -81,6 +83,17 @@
 
         <hr />
         <div>
+
+            <p><a href="/scot-dives/logout">Logout</a>
+
+            {% if user and not user.is_anonymous %}
+              <a>Hello, {{ user.get_full_name }}!</a>
+              <br>
+              <a href="/logout">Logout</a>
+            {% else %}
+
+              <a href="/scot-dives/login">Login with Twitter</a>
+            {% endif %}
             <u1>
                 <li><a href="{% url 'contact' %}">Contact Us</a></li>
                 <li><a href="{% url 'sitemap' %}">Site Map</a></li>

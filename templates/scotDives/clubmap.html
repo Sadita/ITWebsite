@@ -10,30 +10,14 @@
         <h1>
             Club Map
         </h1>
-    <style>
-       #map {
-        height: 600px;
-        width: 800px;
-       }
-    .column {
-        margin-left: 100px;
-    }
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/clubmap.css' %}" />
 
-       .left {
-      margin-left: 30px;
-    }
-
-    .right {
-      margin-left: 50px;
-    }
-
-    </style>
         <div class="row">
             <div class="column left">
                 {% if all_diveClubs %}
-                    <ul>
+                    <ul class="list">
                         {% for diveClub in all_diveClubs %}
-                            <li><a color="blue" onclick="myFunction('{{ diveClub.name }}')" onmouseover="" style="cursor: pointer;"><b><font color="blue">{{ diveClub.name }}</font></b> </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
+                            <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')"  style="cursor: pointer;"><b id="headline">{{ diveClub.name }}</b> </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}

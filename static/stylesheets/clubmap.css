@@ -1,0 +1,30 @@
+  #map {
+        height: 600px;
+        width: 800px;
+       }
+    .column {
+        margin-left: 100px;
+    }
+
+       .left {
+      margin-left: 30px;
+    }
+
+    .right {
+      margin-left: 50px;
+    }
+
+    ul.list {
+        width: 200px;
+        height: 200px;
+        overflow: auto;
+    }
+
+    #listItem {
+        cursor: pointer;
+
+    }
+
+    p {
+       color: blue;
+    }
