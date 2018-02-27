@@ -1,5 +1,5 @@
 from django import template
-from scotDives.models import DiveSiteList
+from scotDives.models import DiveSite
 
 register = template.Library()
 

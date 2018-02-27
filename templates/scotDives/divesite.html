@@ -13,12 +13,7 @@
          <div class="space-topbottom">
             {% if divesites %}
             <u1>
-                {% for divesite in divesites %}
-                    <li>
-                    <a href="{% url 'show_site' divesite.slug %}">{{ divesite.name }}</a>
-                        {{ divesite.rating }}
-                    </li>
-                {% endfor %}
+
             </u1>
             {% else %}
                 <strong>There are no dive sites present.</strong>

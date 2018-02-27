@@ -11,7 +11,7 @@ from django.shortcuts import render_to_response, redirect, render
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 # from django.template.context import RequestContext
-from .models import DiveSpot, DiveClub
+from .models import DiveSpot, DiveClub, DiveSite
 
 
 def login(request):
@@ -65,19 +65,42 @@ def divemap(request):
     # Return response back to the user, updating any cookies that need changed.
     return response
 
+
 def divesites(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
     context_dict = {}
+    # request.session.set_test_cookie()
+    divesite_list = DiveSite.objects.order_by('-rating')
+    # page_list = Page.objects.order_by('-views')[:5]
+    context_dict['divesites'] = divesite_list
 
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)
     # context_dict['visits'] = request.session['visits']
 
-    response = render(request, 'scotDives/divesites.html', context=context_dict)
+    response = render(request, 'scotDives/divesitelist.html', context=context_dict)
     # Return response back to the user, updating any cookies that need changed.
     return response
+
+
+def show_site(request, divesite_name_slug):
+    context_dict = {}
+    try:
+        # request.session.set_test_cookie()
+        divesites = DiveSite.objects.get(slug=divesite_name_slug)
+        # page_list = Page.objects.order_by('-views')[:5]
+        context_dict['divesites'] = divesites
+
+    except DiveSite.DoesNotExist:
+        context_dict['divesites'] = None
+
+    # Call the helper function to handle the cookies
+    # visitor_cookie_handler(request)
+    # context_dict['visits'] = request.session['visits']
+
+    response = render(request, 'scotDives/divesite.html', context=context_dict)
+    # Return response back to the user, updating any cookies that need changed.
+    return response
+
 
 def clubmap(request):
     all_diveClubs = DiveClub.objects.all()
