@@ -6,14 +6,18 @@
 {% endblock %}
 
 {% block body_block %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/club.css' %}" />
 
+</head>
         <h1>
             Club Map
         </h1>
-    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/clubmap.css' %}" />
+
 
         <div class="row">
             <div class="column left">
+                <h2 id="ssd">CLUBS</h2><br><br>
                 {% if all_diveClubs %}
                     <ul class="list">
                         {% for diveClub in all_diveClubs %}

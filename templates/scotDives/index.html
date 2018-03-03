@@ -6,23 +6,39 @@
 {% endblock %}
 
 {% block body_block %}
+<style>
+
+    .jumbotron img{
+        width: 100%;
+        height: auto;
+        padding: 0;
+    }
+
+</style>
+
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/index.css' %}" />
 <div class="jumbotron">
-    <h1 class="display-3">Welcome to ScotDives!</h1>
+    <img src="{% static "images/scotland.jpg" %}" alt="Picture of scotland" />
 </div>
 
+<div class="context">
 <div class="row">
-<div class="column" style="margin-left: 50px; margin-top: 50px;">
+
+<div class="column">
     <div class="column">
-        <div class="space-topbottom">
-            <h4>About </h4>
-                <br>  blablablalbalblablablalbalbalblablblb <br> blLVLALVLAVLLVDSLLLFDSFLDSLFDSLFLSDFLSDLFSDLF <br> blLVLALVLAVLLVDSLLLFDSFLDSLFDSLFLSDFLSDLFSDLF
+        <div id="about" class="space-topbottom">
+            <h3>About </h3>
+                <br>  ScotDives aims to bring all dive locations in Scotland to one website.  <br>
+                With us, you can browse Scotland’s world-class dive sites and find a friendly, local club. <br>
+                And with our Photo Gallery, you can even see which creatures you can expect to encounter <br>
+                on your trips below the surface of Scotland’s chilly waters.
         </div>
     </div>
 
-    <div class="column" style="width: 500px; margin-left: 50px; margin-top: 50px;">
-    <div class="row marketing">
+    <div class="column">
+    <div id="top" class="row marketing">
         <div class="col-lg-6">
-        <h4>Top Rated Dives</h4>
+        <h3>Top Rated Dives</h3>
         <p>
         <ul>
             <li>Fife Ness</li>
@@ -34,13 +50,15 @@
     </div>
     </div>
 </div>
-<div class="column">
-    <a class="twitter-timeline" data-width="380" data-height="460" href="https://twitter.com/ScotDives?ref_src=twsrc%5Etfw">Tweets by ScotDives</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<div id="tweeter" class="column">
+    <h3 class="tweetHeadline">Our Tweets</h3>
+    <a class="twitter-timeline" data-width="380"  data-height="460" href="https://twitter.com/ScotDives?ref_src=twsrc%5Etfw">Tweets by ScotDives</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
      <br>   <a class="twitter-follow-button"
           href="https://twitter.com/scotdives"
           data-size="large">
             Follow @ScotDives
         </a>
+</div>
 </div>
 </div>
 {% endblock %}

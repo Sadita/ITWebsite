@@ -1,0 +1,38 @@
+#about, #top {
+    margin: auto
+    text-align: center;
+	color: white
+}
+
+#top, #tweeter, #about {
+	padding-left: 50px;
+	padding-right: 50px;
+	padding-bottom: 50px;
+	padding-top: 50px;
+    background-color: rgb(40, 46, 120);
+    margin-left: 100px;
+    margin-top: 50px;
+    color: white
+}
+
+
+.row {
+    text-align: center;
+    margin: auto;
+}
+
+h3 {
+	color: white;
+	text-align: center;
+	margin-bottom: 40px;
+
+}
+.context {
+
+    background-color: rgb(240, 240, 240);
+
+}
+
+.col-lg-6{
+    margin: auto;
+}
