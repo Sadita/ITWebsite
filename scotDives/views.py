@@ -54,7 +54,7 @@ def index(request):
     return response
 
 def divemap(request):
-    all_diveSpots = DiveSpot.objects.all()
+    all_diveSpots = DiveSite.objects.all()
     context_dict = {'all_diveSpots' : all_diveSpots,}
 
     # Call the helper function to handle the cookies
