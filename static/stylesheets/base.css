@@ -8,3 +8,35 @@
     padding-top: 20px;
     padding-bottom: 20px;
 }
+
+
+ .bg-4 {
+      background-color: #2f2f2f; /* Black Gray */
+      color: #fff;
+      padding: 10px;
+  }
+
+  #logout {
+    float: left;
+    margin-left: 40px;
+  }
+
+  #login {
+    float: left; margin-left: 40px;
+  }
+
+  #sitemap {
+
+    float: right;
+    margin-right: 40px;
+  }
+
+  #contact {
+
+     float: right;
+    margin-right: 40px;
+  }
+
+  #team {
+    color: white;
+  }

@@ -1,0 +1,16 @@
+    #map {
+        height: 600px;
+        width: 800px;
+        margin: 50px
+       }
+
+    h1 {
+            background: #00838F;
+            color: white;
+       }
+
+    img {
+
+        width: 100%;
+
+    }

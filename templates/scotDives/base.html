@@ -17,12 +17,16 @@
         </title>
         <!-- CSS -->
         <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href=
-           "http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
-
+        <link href="http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/base.css' %}" />
 
     </head>
-
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
 <body>
 
 <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
@@ -37,7 +41,7 @@
 
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{% url 'index' %}">
                     Home
                 </a>
@@ -82,22 +86,26 @@
         </div>
 
         <hr />
+
+<footer class="container-fluid bg-4 text-center">
+
         <div>
 
-            <p><a href="/scot-dives/logout">Logout</a>
+            <p><a id="logout" href="/scot-dives/logout">Logout</a>
 
             {% if user and not user.is_anonymous %}
               <a>Hello, {{ user.get_full_name }}!</a>
               <br>
-              <a href="/logout">Logout</a>
+              <a href="/logout" >Logout</a>
             {% else %}
 
-              <a href="/scot-dives/login">Login with Twitter</a>
+              <a id="login" href="/scot-dives/login">Login with Twitter</a>
             {% endif %}
-            <u1>
-                <li><a href="{% url 'contact' %}">Contact Us</a></li>
-                <li><a href="{% url 'sitemap' %}">Site Map</a></li>
-            </u1>
+                <a id="team">2018 by Capital G Team. University of Glasgow</a>
+           <a id="sitemap" href="{% url 'contact' %}">Contact Us</a>
+           <a id="contact" href="{% url 'sitemap' %}">Site Map</a>
+
         </div>
+</footer>
     </body>
 </html>
