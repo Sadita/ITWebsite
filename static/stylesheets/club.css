@@ -1,4 +1,4 @@
-  #map {
+ #map {
         height: 600px;
         width: 800px;
 
@@ -22,14 +22,10 @@
         overflow: auto;
     }
 
-    #listItem {
-
     #ssd {
 
         color: blue;
         margin-top: 200px;
-    }
-
     }
 
     p {

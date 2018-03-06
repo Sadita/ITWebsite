@@ -21,6 +21,9 @@ class DiveSite(models.Model):
     name = models.CharField(max_length=128, unique=True)
     rating = models.FloatField(default=0)
     slug = models.SlugField(unique=True)
+    latitude = models.FloatField(max_length=50, default=0)
+    longitude = models.FloatField(max_length=50, default=0)
+    description = models.CharField(max_length=1000, default="")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
