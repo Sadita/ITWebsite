@@ -7,15 +7,17 @@
 
 {% block body_block %}
 
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/divemap.css' %}" />
+
+</head>
+
+<div>
+    <img src="{% static "images/scotland.jpg" %}" alt="Picture of scotland"/>
+</div>
         <h1>
             Dive Map
         </h1>
-    <style>
-       #map {
-        height: 600px;
-        width: 800px;
-       }
-    </style>
 
     <div id="map"></div>
     <script>
@@ -52,7 +54,7 @@
 
 
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSUTagss3J4yDnZKDpKpLsKBFQyOwADYo&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSUTagss3J4yDnZKDpKpLsKBFQyOwADYo&callback=initMap">
     </script>
 
 
