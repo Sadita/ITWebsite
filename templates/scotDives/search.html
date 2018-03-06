@@ -2,18 +2,31 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    ScotDives
+    Index
 {% endblock %}
 
 {% block body_block %}
-        <h1>
-            Here's your search result for Bjorn:
-
-            <3
-        </h1>
-
-
-
-
-
+<form method='GET' action=''>
+<div>
+    <h1>Search</h1>
+    <br/>
+    <input type='text' name='q' placeholder='Search pages' value='{{ request.GET.query }}'/>
+    <input type='submit' value='Search' />
+</form>
+    <div class="space-topbottom">
+    {% if divesites %}
+        <u1>
+            {% for divesite in divesites %}
+                <li>
+                    <ul>
+                        <a href="{% url 'show_site' divesite.slug %}">{{ divesite.name }}</a>
+                        {{ divesite.rating }}
+                    </ul>
+                </li>
+            {% endfor %}
+        </u1>
+    {% else %}
+        <strong>No dive sites match this search</strong>
+    {% endif %}
+    </div>
 {% endblock %}

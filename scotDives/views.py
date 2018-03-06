@@ -131,11 +131,16 @@ def photogallery(request):
 
 
 def search(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
     context_dict = {}
+    # request.session.set_test_cookie()
+    divesite_list = DiveSite.objects.order_by('-name')
+    # page_list = Page.objects.order_by('-views')[:5]
 
+    query = request.GET.get("q")
+    if query:
+        divesite_list = divesite_list.filter(name__icontains=query)
+        print(divesite_list)
+        context_dict['divesites'] = divesite_list
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)
     # context_dict['visits'] = request.session['visits']
