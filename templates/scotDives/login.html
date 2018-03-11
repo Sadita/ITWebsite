@@ -6,9 +6,17 @@
 {% endblock %}
 
 {% block body_block %}
+
+
+
 <br>
+
 <div>
-  <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
+    <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
+</div>
+
+<div>
+    <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
 </div>
 
 {% endblock %}

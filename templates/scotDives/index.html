@@ -6,6 +6,15 @@
 {% endblock %}
 
 {% block body_block %}
+<head>
+    <strong>
+        {% if user and not user.is_anonymous %}
+        <a>Hello, {{ user.get_full_name }}!</a>
+        {% else %}
+        {% endif %}
+        <a> Welcome to ScotDives!</a>
+    </strong>
+</head>
 <style>
 
     .jumbotron img{

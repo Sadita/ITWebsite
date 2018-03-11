@@ -64,6 +64,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'itWebsite.urls'
@@ -92,6 +93,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
+
+                'social_django.context_processors.backends',  # <--
+                'social_django.context_processors.login_redirect',  # <--
             ],
         },
     },
@@ -151,12 +155,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
+SOCIAL_AUTH_FACEBOOK_KEY = '142678796553745'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '0df8808d9979b1fe72d4aa5e29bd2b33'    # App Secret
+
 # Variables to set up media file hosting
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
 # Log-in page
 LOGIN_URL = '/scot-dives/login/'
+
+LOGIN_REDIRECT_URL = 'index'
 
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 #SESSION_COOKIE_AGE = 1209600
@@ -166,5 +175,8 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.facebook.FacebookOAuth2',
     'social.backends.google.GoogleOAuth2',
     'social.backends.twitter.TwitterOAuth',
+
+    'social_core.backends.facebook.FacebookOAuth2',
+
     'django.contrib.auth.backends.ModelBackend',
 )
