@@ -12,11 +12,19 @@
 <br>
 <p><strong>-- OR --</strong></p>
 <div>
-    <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">Login with Twitter</a>
+    <a href="{% url 'social:begin' 'twitter' %}?next={{ request.path }}">
+        <button class="loginBtn loginBtn--twitter">
+        Login with Twitter
+        </button>
+    </a>
 </div>
 
 <div>
-    <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">Login with Facebook</a>
+    <a href="{% url 'social:begin' 'facebook' %}?next={{ request.path }}">
+        <button class="loginBtn loginBtn--facebook">
+        Login with Facebook
+        </button>
+    </a>
 </div>
 
 {% endblock %}
