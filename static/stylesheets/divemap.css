@@ -1,12 +1,26 @@
     #map {
-        height: 600px;
-        width: 800px;
-        margin: 50px
+        height: 100%;
+        width: 100%;
        }
 
+
+
+    .content {
+        max-width: 930px;
+        margin: auto;
+        background: white;
+
+     }
+
+    #content-dimension {
+        height: calc(100vh - 94px);
+        margin-bottom: 30px;
+    }
+
     h1 {
-            background: #00838F;
+            background: #7593c4;
             color: white;
+            font-family: "Trebuchet MS";
        }
 
     img {

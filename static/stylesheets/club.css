@@ -4,29 +4,27 @@
 
        }
 
-    .column {
-        margin-left: 100px;
-        margin-top: 50px;
-    }
 
        .left {
-      margin-left: 100px;
+      margin-left: 50px;
     }
 
     .right {
-      margin-left: 100px;
+      margin-left: 40px;
     }
 
     ul.list {
-        width: 200px;
-        height: 300px;
+        width: 300px;
+        height: 500px;
         overflow: auto;
+        margin-right: 50px;
     }
 
     #clubTitle {
 
         color: blue;
-        margin-top: 30px;
+        margin-top: 50px;
+
     }
 
     p {
@@ -34,8 +32,9 @@
     }
 
     h1 {
-            background: #00838F;
+            background: #7593c4;
             color: white;
+            font-family: "Trebuchet MS";
        }
 
     img {
@@ -43,3 +42,22 @@
         width: 100%;
 
     }
+
+    .content {
+        max-width: 1200px;
+        margin: auto;
+        background: white;
+
+     }
+
+    #content-dimension {
+        margin-bottom: 30px;
+    }
+
+    .space-bottom {
+         height: 100%;
+         background-position: center;
+         background-size: cover;
+         background-repeat: no-repeat;
+         padding: 0px;
+     }

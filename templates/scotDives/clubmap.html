@@ -17,24 +17,25 @@
             Club Map
         </h1>
 
-
-        <div class="row">
-            <div class="column left">
-                <h2 id="clubTitle">CLUBS</h2><br><br>
-                {% if all_diveClubs %}
-                    <ul class="list">
-                        {% for diveClub in all_diveClubs %}
-                            <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')"  style="cursor: pointer;">
-                                <b id="headline">{{ diveClub.name }}</b>
-                                </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
-                        {% endfor %}
-                    </ul>
-                {% endif %}
+    <div class="content" id = "content-dimension">
+            <div class="row">
+                <div class="column left">
+                    <h2 id="clubTitle"></h2><br><br>
+                    {% if all_diveClubs %}
+                        <ol class="list">
+                            {% for diveClub in all_diveClubs %}
+                                <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')"  style="cursor: pointer;">
+                                    <b id="headline">{{ diveClub.name }}</b>
+                                    </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
+                            {% endfor %}
+                        </ol>
+                    {% endif %}
+                </div>
+                <div class="column right">
+                    <div id="map"></div>
+                </div>
             </div>
-            <div class="column right">
-                <div id="map"></div>
-            </div>
-        </div>
+    </div>
     <script>
 
         var marker;

@@ -1,8 +1,12 @@
 .space-bottom {
-    padding-bottom: 20px;
+    padding-bottom: 0px;
 }
 
+#logo {
 
+    height: 90px;
+    width: 90px;
+}
 /* Shared */
 .loginBtn {
   box-sizing: border-box;
