@@ -9,7 +9,17 @@ from scotDives.models import DiveSite, DiveClub
 
 def populate():
     divesitelist = {"Fife Ness": {"rating": 4.5, "latitude": 55.355163, "longitude": -3.378207,
-                                  "description": "a descritopn for Fife Ness", "image": "images/fifeness.jpg"},
+                                  "description": "Two possible entry points. The first is directly in front of the "
+                                                 "parking spaces. This ‘lagoon’ is usually very calm, clear and "
+                                                 "makes an excellent training location. Lots of fish and crabs can "
+                                                 "be spotted hiding in the rocks on either side of this lagoon. "
+                                                 "Also plenty of golf balls from the local course! \nFor the second "
+                                                 "entry point, turn right from the carpark (facing the water) and "
+                                                 "follow the grassy path up the hillock which leads to a narrow "
+                                                 "channel which allows easy access at high tide. \n\nDifficulty "
+                                                 "Level: All levels, suitable for training beginners \n\nDepth: 15m "
+                                                 "\n\nAvailable Parking: On site in front of first entry point",
+                                  "image": "images/fifeness.jpg"},
                     "Isle of Man": {"rating": 2.5, "latitude": 56.174592, "longitude": -5.083394,
                                     "description": "a descritopn  for Isle of Man", "image": "images/isleofman.jpg"},
                     "Kentallen Wall": {"rating": 3, "latitude": 56.385906, "longitude": -2.974244,

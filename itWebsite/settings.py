@@ -163,6 +163,7 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 
   'fields': 'id, name, email, age_range'
+
 }
 # SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.10'
 
