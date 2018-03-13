@@ -9,15 +9,17 @@ from scotDives.models import DiveSite, DiveClub
 
 def populate():
     divesitelist = {"Fife Ness": {"rating": 4.5, "latitude": 55.355163, "longitude": -3.378207,
-                                  "description": "a descritopn for Fife Ness"},
+                                  "description": "a descritopn for Fife Ness", "image": "images/fifeness.jpg"},
                     "Isle of Man": {"rating": 2.5, "latitude": 56.174592, "longitude": -5.083394,
-                                    "description": "a descritopn  for Isle of Man"},
+                                    "description": "a descritopn  for Isle of Man", "image": "images/isleofman.jpg"},
                     "Kentallen Wall": {"rating": 3, "latitude": 56.385906, "longitude": -2.974244,
-                                       "description": "a descritopn  for Kentallen Wall"},
+                                       "description": "a descritopn  for Kentallen Wall",
+                                       "image": "images/kentallenwall.jpg"},
                     "The Slates (Ballachulish)": {"rating": 2, "latitude": 55.432373, "longitude": -3.156804,
-                                                  "description": "a descritopn  for The Slates"},
+                                                  "description": "a descritopn  for The Slates",
+                                                  "image": "images/theslates.jpg"},
                     "SS Afton": {"rating": 3.5, "latitude": 55.341912, "longitude": -4.733811,
-                                 "description": "a descritopn  for SS Afton"}
+                                 "description": "a descritopn  for SS Afton", "image": "images/ssafton.jpg"}
                     }
 
     diveclublist = {
@@ -28,10 +30,10 @@ def populate():
 
     for divesite, divesite_data in divesitelist.items():
         c = add_site(divesite, divesite_data["rating"], divesite_data["latitude"], divesite_data["longitude"],
-                     divesite_data["description"])
+                     divesite_data["description"], divesite_data["image"])
 
     for c in DiveSite.objects.all():
-        print(" - {0}".format(str(c)))
+        print(" - {0} - {1}".format(str(c), str(c.image)))
 
     for diveclub, diveclub_data in diveclublist.items():
         d = add_club(diveclub, diveclub_data["telephone"], diveclub_data["latitude"], diveclub_data["longitude"],
@@ -41,12 +43,13 @@ def populate():
         print(" - {0}".format(str(d)))
 
 
-def add_site(name, rating, latitude, longitude, description):
+def add_site(name, rating, latitude, longitude, description, image):
     c = DiveSite.objects.get_or_create(name=name)[0]
     c.rating = rating
     c.latitude = latitude
     c.longitude = longitude
     c.description = description
+    c.image = image
     c.save()
     return c
 
@@ -64,3 +67,4 @@ def add_club(name, telephone, latitude, longitude, address):
 if __name__ == '__main__':
     print("Starting scotDives population script...")
     populate()
+

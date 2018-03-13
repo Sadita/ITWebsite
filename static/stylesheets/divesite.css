@@ -1,0 +1,60 @@
+
+    .column {
+        margin-left: 100px;
+        margin-top: 50px;
+    }
+
+       .left {
+      margin-left: 100px;
+    }
+
+    .right {
+      margin-left: 100px;
+    }
+
+    ul.list {
+        width: 200px;
+        height: 300px;
+        overflow: auto;
+    }
+
+    p {
+       color: blue;
+    }
+
+    h1 {
+            background: #7593c4;
+            color: white;
+            font-family: "Trebuchet MS";
+            font-size: 30px;
+            padding-top:10px;
+            text-indent: 30px;
+            line-height: 1.5;
+       }
+
+    img {
+
+        width: 25%;
+
+    }
+
+     .space-bottom {
+         background-image: url(../images/divesitelist.jpg);
+         height: 100%;
+         background-position: center;
+         background-size: cover;
+         background-repeat: no-repeat;
+         padding: 0px;
+     }
+
+
+     .content {
+        max-width: 930px;
+        margin: auto;
+        background: white;
+
+     }
+
+    #content-dimension {
+        height: calc(100vh - 94px);
+    }

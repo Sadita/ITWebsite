@@ -2,32 +2,49 @@
 {% load staticfiles %}
 
 {% block title_block %}
-    ScotDives
+    {{ divesite.name }}
 {% endblock %}
 
 {% block body_block %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/divesite.css' %}" />
 
+</head>
+<div class="content" id = "content-dimension">
+    {% if divesite %}
         <h1>
-            Dive Sites
+            {{ divesite.name }}
         </h1>
 
-         <div class="space-topbottom">
-            {% if divesites %}
-            <u1>
-
-            </u1>
-            {% else %}
-                <strong>There are no dive sites present.</strong>
-            {% endif %}
+        <div class="space-topbottom">
+            <strong>Rating: </strong>
+            {{ divesite.rating }}
         </div>
 
-<div
-  class="fb-like"
-  data-share="true"
-  data-width="450"
-  data-show-faces="true">
+        <div>
+
+        <img src="{% static divesite.image %}"
+                 alt="Picture of the Dive Site" />
+        </div>
+
+        <div class="space-topbottom">
+            <strong>Description: </strong>
+            {{ divesite.description }}
+        </div>
+
+        <div class="space-topbottom">
+            <strong>Latitude: </strong>
+            {{ divesite.latitude }}
+        </div>
+
+        <div class="space-topbottom">
+            <strong>Longitude: </strong>
+            {{ divesite.longitude }}
+        </div>
+
+    {% else %}
+        <strong>Information on the selected dive site is currently unavailable.</strong>
+    {% endif %}
 </div>
-
-
 
 {% endblock %}

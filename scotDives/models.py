@@ -24,6 +24,7 @@ class DiveSite(models.Model):
     latitude = models.FloatField(max_length=50, default=0)
     longitude = models.FloatField(max_length=50, default=0)
     description = models.CharField(max_length=1000, default="")
+    image = models.CharField(max_length=1000, default="images/scotland.jpg")
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

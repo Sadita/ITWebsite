@@ -23,6 +23,7 @@ from scotDives import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+
     url(r'scot-dives/', include('scotDives.urls')),
     # above maps any URLs starting
     # with scot-dives/ to be handled by

@@ -2,6 +2,7 @@ from django.conf.urls import url, include
 from scotDives import views
 
 urlpatterns = [
+    url(r'^$', views.index, name='index'),
     url(r'^home/', views.index, name='index'),
     url(r'^dive-map/', views.divemap, name='divemap'),
     url(r'^dive-sites/', views.divesites, name='divesites'),

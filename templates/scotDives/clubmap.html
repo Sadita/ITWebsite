@@ -24,7 +24,9 @@
                 {% if all_diveClubs %}
                     <ul class="list">
                         {% for diveClub in all_diveClubs %}
-                            <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')"  style="cursor: pointer;"><b id="headline">{{ diveClub.name }}</b> </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
+                            <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')"  style="cursor: pointer;">
+                                <b id="headline">{{ diveClub.name }}</b>
+                                </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
                         {% endfor %}
                     </ul>
                 {% endif %}

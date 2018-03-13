@@ -86,12 +86,12 @@ def show_site(request, divesite_name_slug):
     context_dict = {}
     try:
         # request.session.set_test_cookie()
-        divesites = DiveSite.objects.get(slug=divesite_name_slug)
+        divesite = DiveSite.objects.get(slug=divesite_name_slug)
         # page_list = Page.objects.order_by('-views')[:5]
-        context_dict['divesites'] = divesites
+        context_dict['divesite'] = divesite
 
     except DiveSite.DoesNotExist:
-        context_dict['divesites'] = None
+        context_dict['divesite'] = None
 
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)
