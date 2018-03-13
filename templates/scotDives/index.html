@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body_block %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/index.css' %}" />
+
+<img src="{% static "images/scotland.jpg" %}" alt="Picture of scotland" />
+
 <head>
     <strong>
         {% if user and not user.is_anonymous %}
@@ -15,20 +20,6 @@
         <a> Welcome to ScotDives!</a>
     </strong>
 </head>
-<style>
-
-    .jumbotron img{
-        width: 100%;
-        height: auto;
-        padding: 0;
-    }
-
-</style>
-
-<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/index.css' %}" />
-<div class="jumbotron">
-    <img src="{% static "images/scotland.jpg" %}" alt="Picture of scotland" />
-</div>
 
 <div class="context">
 <div class="row">

@@ -9,7 +9,6 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/divemap.css' %}" />
-
 </head>
 
 <div>
@@ -31,7 +30,7 @@
         var infowindow = new google.maps.InfoWindow();
         {% if all_diveSpots %}
             {% for divespot in all_diveSpots %}
-             var contentString = '<b>{{ divespot.name }}</b></br> ' + '{{ divespot.description }}</br> ' + '{{ divespot.rating }}</br>' + ' <a href="{% url 'show_site' divespot.slug %}">Go to page</a>'
+             var contentString = '<b>{{ divespot.name }}</b></br> '  + '{{ divespot.rating }}</br>' + ' <a href="{% url 'show_site' divespot.slug %}">Go to page</a>'
 
 
              var marker = new google.maps.Marker({

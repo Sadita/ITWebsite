@@ -33,6 +33,12 @@ h3 {
 
 }
 
+img {
+
+        width: 100%;
+
+    }
+
 .col-lg-6{
     margin: auto;
 }

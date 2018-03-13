@@ -53,6 +53,7 @@ def index(request):
     # Return response back to the user, updating any cookies that need changed.
     return response
 
+
 def divemap(request):
     all_diveSpots = DiveSite.objects.all()
     context_dict = {'all_diveSpots' : all_diveSpots,}
