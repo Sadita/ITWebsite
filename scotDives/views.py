@@ -1,17 +1,17 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response, redirect
 # from scotDives.models import DiveList
 # from scotDives.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
-#imam---
 from django.shortcuts import render_to_response, redirect, render
-from django.contrib.auth import logout as auth_logout
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from scotDives.forms import UserProfileForm
+#from django.contrib.auth import logout as auth_logout
 # from django.template.context import RequestContext
-from .models import DiveSpot, DiveClub, DiveSite
+from scotDives.models import DiveSpot, DiveClub, DiveSite, UserProfile
 
 
 def login(request):
@@ -149,6 +149,39 @@ def search(request):
     response = render(request, 'scotDives/search.html', context=context_dict)
     # Return response back to the user, updating any cookies that need changed.
     return response
+
+@login_required
+def register_profile(request):
+    form = UserProfileForm()
+
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES)
+    if form.is_valid():
+        user_profile = form.save(commit=False)
+        user_profile.user = request.user
+        user_profile.save()
+        return redirect('index')
+    else:
+        print(form.errors)
+    context_dict = {'form':form}
+    return render(request, 'scotDives/profile_registration.html', context_dict)
+
+@login_required
+def profile(request, username):
+    try:
+        user = User.objects.get(username=username)
+    except User.DoesNotExist:
+        return redirect('index')
+    userprofile = UserProfile.objects.get_or_create(user=user)[0]
+    form = UserProfileForm({'picture': userprofile.picture})
+    if request.method == 'POST':
+        form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('profile', user.username)
+        else:
+            print(form.errors)
+    return render(request, 'scotDives/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
 
 
 def contact(request):

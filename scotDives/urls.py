@@ -12,8 +12,10 @@ urlpatterns = [
     url(r'^search/', views.search, name='search'),
     url(r'^contact-us/', views.contact, name='contact'),
     url(r'^sitemap/', views.sitemap, name='sitemap'),
+    url(r'^profile_registration', views.register_profile, name='register_profile'),
+    url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
 
     #--imam--
-    url(r'^login/', views.login, name='login'),
-    url(r'^logout/', views.logout, name='logout'),
+    #url(r'^login/', views.login, name='login'),
+    #url(r'^logout/', views.logout, name='logout'),
 ]

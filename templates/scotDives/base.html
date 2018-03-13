@@ -81,6 +81,29 @@
                         Photo Gallery
                     </a>
                 </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' user.username %}">
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth_logout' %}?next=/scot-dives/home/">
+                        Logout
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registration_register' %}">
+                        Register Here
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth_login' %}">
+                        Login
+                    </a>
+                </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'search' %}">
                         Search
@@ -103,21 +126,12 @@
             {% endblock %}
         </div>
 
-        <!hr />
-
 <footer class="container-fluid bg-4 text-center">
 
         <div>
-
-            {% if user and not user.is_anonymous %}
-              <a id="logout" href="/scot-dives/logout">Logout</a>
-            {% else %}
-
-              <a id="login" href="/scot-dives/login">Login</a>
-            {% endif %}
-                <a id="team">2018 by Capital G Team. University of Glasgow</a>
-           <a id="sitemap" href="{% url 'contact' %}">Contact Us</a>
-           <a id="contact" href="{% url 'sitemap' %}">Site Map</a>
+            <a id="team">2018 by Capital G Team. University of Glasgow</a>
+            <a id="sitemap" href="{% url 'contact' %}">Contact Us</a>
+            <a id="contact" href="{% url 'sitemap' %}">Site Map</a>
 
         </div>
 </footer>

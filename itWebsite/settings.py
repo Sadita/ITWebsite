@@ -134,6 +134,24 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PASSWORD_HASHERS = (
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+)
+
+# If True, users can register
+REGISTRATION_OPEN = True
+# One-week activation window; you may, of course, use a different value.
+ACCOUNT_ACTIVATION_DAYS = 7
+# If True, the user will be automatically logged in.
+REGISTRATION_AUTO_LOGIN = True
+# The page you want users to arrive at after they successfully log in
+LOGIN_REDIRECT_URL = 'index'
+# The page users are directed to if they are not logged in,
+# and are trying to access pages requiring authentication
+#LOGIN_URL = '/accounts/login/'
+LOGIN_URL = '/scot-dives/login/'
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
@@ -171,10 +189,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
 
-# Log-in page
-LOGIN_URL = '/scot-dives/login/'
-
-LOGIN_REDIRECT_URL = 'index'
+SITE_ID = 1
 
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 #SESSION_COOKIE_AGE = 1209600

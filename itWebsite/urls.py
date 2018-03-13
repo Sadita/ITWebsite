@@ -19,7 +19,13 @@ from django.conf.urls import url
 from django.contrib import admin
 from django.conf.urls import include
 from scotDives import views
+from registration.backends.simple.views import RegistrationView
+from scotDives.forms import UserForm
 
+# Create a new class that redirects the user to the index page, #if successful at logging
+class MyRegistrationView(RegistrationView):
+    def get_success_url(self, user):
+        return '/scot-dives/profile_registration/'
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
@@ -29,6 +35,8 @@ urlpatterns = [
     # with scot-dives/ to be handled by
     # the scotDives application
     url(r'^admin/', admin.site.urls),
+    url(r'^scot-dives/register/$', MyRegistrationView.as_view(form_class=UserForm), name='registration_register'),
+    url(r'^scot-dives/', include('registration.backends.simple.urls')),
 
     #--imam--
     url('', include('social.apps.django_app.urls', namespace='social')),
