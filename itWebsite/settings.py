@@ -9,9 +9,6 @@ https://docs.djangoproject.com/en/1.10/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.10/ref/settings/
 """
-#--imam--
-from config import *
-#--------
 
 import os
 
@@ -76,26 +73,14 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                #'django.template.context_processors.debug',
-                #'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                #'django.template.context_processors.media',
-                #'django.template.context_processors.request'
-                
-                #imam(twitter_login)
                 'django.contrib.auth.context_processors.auth',
-                #'django.core.context_processors.debug',
-                #'django.core.context_processors.i18n',
-                #'django.core.context_processors.media',
-                #'django.core.context_processors.static',
-                #'django.core.context_processors.tz',
                 'django.contrib.messages.context_processors.messages',
                 'social.apps.django_app.context_processors.backends',
                 'social.apps.django_app.context_processors.login_redirect',
-
-                'social_django.context_processors.backends',  # <--
-                'social_django.context_processors.login_redirect',  # <--
+                'social_django.context_processors.backends',  
+                'social_django.context_processors.login_redirect',  
             ],
         },
     },
@@ -173,18 +158,6 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
 
-SOCIAL_AUTH_FACEBOOK_KEY = '142678796553745'  # App ID
-SOCIAL_AUTH_FACEBOOK_SECRET = '0df8808d9979b1fe72d4aa5e29bd2b33'    # App Secret
-SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scotdives'
-
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-
-  'fields': 'id, name, email, age_range'
-
-}
-# SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.10'
-
 # Variables to set up media file hosting
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
@@ -194,13 +167,48 @@ SITE_ID = 1
 #SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 #SESSION_COOKIE_AGE = 1209600
 
-#imam(twitter_login)
+#-----(social login start)-----
+
 AUTHENTICATION_BACKENDS = (
-    'social.backends.facebook.FacebookOAuth2',
+    #'social.backends.facebook.FacebookOAuth2',
     'social.backends.google.GoogleOAuth2',
-    'social.backends.twitter.TwitterOAuth',
+    #'social.backends.twitter.TwitterOAuth',
+	
+	'social_core.backends.twitter.TwitterOAuth',
 
     'social_core.backends.facebook.FacebookOAuth2',
 
     'django.contrib.auth.backends.ModelBackend',
 )
+
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_URL = '/'
+
+#facebook login
+SOCIAL_AUTH_FACEBOOK_KEY = '142678796553745'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '0df8808d9979b1fe72d4aa5e29bd2b33'    # App Secret
+SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scotdives'
+
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
+
+  'fields': 'id, name, email'
+
+}
+# SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.10'
+
+#twitter login
+SOCIAL_AUTH_TWITTER_KEY = 'd7GqghPSipnSQIkmkDTk2XIkL'
+SOCIAL_AUTH_TWITTER_SECRET = 'VFlmSAC0hd3M3EnXbkzzFvEzZjT1Lua9MPLwU1LE7xhHAa06Z8'
+
+SOCIAL_AUTH_TWITTER_OAUTH2_SCOPE = ['email']
+SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
+    'fields': 'id, name, email'
+}
+
+#13mar
+#SOCIAL_AUTH_LOGIN_ERROR_URL = '/scot-dives/settings/'
+#SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/scot-dives/settings/'
+SOCIAL_AUTH_RAISE_EXCEPTIONS = False
+
+#-----(social login end)-----   
