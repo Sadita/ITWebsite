@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scotDives',
     'star_ratings',
-    'twitter_login',
+    
     'social.apps.django_app.default',
     'social_django',
 ]
