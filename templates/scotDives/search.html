@@ -1,19 +1,19 @@
 {% extends 'scotDives/base.html' %}
 {% load staticfiles %}
-
-{% block title_block %}
-    Index
-{% endblock %}
-
 {% block body_block %}
+<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
+    rel="stylesheet">
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/search.css' %}" />
+</head>
+<div class="jumbotron">
+    <h2 class="display-3">Search</h2>
+
 <form method='GET' action=''>
-<div>
-    <h1>Search</h1>
-    <br/>
     <input type='text' name='q' placeholder='Search pages' value='{{ request.GET.query }}'/>
-    <input type='submit' value='Search' />
+    <input type='submit' class="btn btn-primary btn-sm" value='Search' />
 </form>
-    <div class="space-topbottom">
+<div class="content" id = "content-dimension">
     {% if divesites %}
         <u1>
             {% for divesite in divesites %}
@@ -26,7 +26,7 @@
             {% endfor %}
         </u1>
     {% else %}
-        <strong>No dive sites match this search</strong>
+        <strong>No dive sites to display</strong>
     {% endif %}
     </div>
 {% endblock %}

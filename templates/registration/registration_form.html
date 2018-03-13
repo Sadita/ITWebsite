@@ -1,22 +1,20 @@
 {% extends "scotDives/base.html" %}
 {% load staticfiles %}
-
-{% block title_block %}
-  Registration
-{% endblock %}
-
 {% block body_block %}
-  <h1>Register Here</h1>
+<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
+    rel="stylesheet">
+<div class="jumbotron">
+    <h2 class="display-3">Register</h2>
   <br />
     <form method="post" action=".">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Submit" />
+        <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
   <br />
   <p>
       Already a member?
-      <a href="{% url 'auth_login' %}" class="btn btn-primary" role="button">Login</a>
+      <a href="{% url 'auth_login' %}">Login</a>
   </p>
   <br />
 </div>
