@@ -49,8 +49,16 @@ INSTALLED_APPS = [
     'scotDives',
     'star_ratings',
     
+	#django-social-login
     'social.apps.django_app.default',
     'social_django',
+	
+	#django-gallery
+     'photologue',
+     'sortedm2m',
+	 'django.contrib.sites',
+
+	
 ]
 
 MIDDLEWARE = [

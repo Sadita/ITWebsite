@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+
+{% load staticfiles %}
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title>
+            ScotDives
+            {% block title_block %}
+                Website
+            {% endblock %}
+        </title>
+        <script>
+        // Remove the ugly Facebook appended hash
+        // <https://github.com/jaredhanson/passport-facebook/issues/12>
+            (function removeFacebookAppendedHash() {
+                if (!window.location.hash || window.location.hash !== '#_=_')
+                    return;
+                if (window.history && window.history.replaceState)
+                    return window.history.replaceState('', document.title, window.location.pathname + window.location.search);
+        // Prevent scrolling by storing the page's current scroll offset
+                var scroll = {
+                top: document.body.scrollTop,
+                left: document.body.scrollLeft
+                };
+                window.location.hash = "";
+        // Restore the scroll offset, should be flicker free
+                document.body.scrollTop = scroll.top;
+                document.body.scrollLeft = scroll.left;
+            }());
+        </script>
+        <!-- CSS -->
+        <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="http://v4-alpha.getbootstrap.com/examples/dashboard/dashboard.css" rel="stylesheet">
+		
+		
+		<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
+        <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/base.css' %}" />
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+		
+		<!-- photologue -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		
+
+    </head>
+
+<body>
+
+<header>
+    <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top bg-inverse">
+        <button class="navbar-toggler navbar-toggler-right hidden-lg-up" type="button" data-toggle="collapse"
+                data-target="#navbar"
+                aria-controls="navbar"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <img id="logo" src="{% static "images/favicon.ico" %}" alt="logo"/>
+        <a class="navbar-brand" href="{% url 'index' %}">ScotDives</a>
+
+        <div class="collapse navbar-collapse" id="navbar" hei>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">
+                    <i class="fas fa-home"></i>
+                        Home
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'divemap' %}">
+                        Dive Map
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'divesites' %}">
+                        Dive Sites
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'clubmap' %}">
+                        Find a Club
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'photogallery' %}">
+                        Photo Gallery
+                    </a>
+                </li>
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' user.username %}">
+                        Profile
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth_logout' %}?next=/scot-dives/home/">
+                        Logout
+                    </a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'registration_register' %}">
+                        Register Here
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'auth_login' %}">
+                        Login
+                    </a>
+                </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'search' %}">
+                        Search
+                        <i class="fas fa-search"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+	<!-- always check this -->
+		<div class="container"> 
+			{% block content %}{% endblock %} 
+		</div> 
+
+        <div class="space-bottom">
+            {% block body_block %}
+            {% endblock %}
+        </div>
+
+        <div>
+            {% block sidebar_block %}
+            {% endblock %}
+        </div>
+
+<footer id="footer" class="container-fluid bg-4 text-center">
+
+        <div>
+            <a id="team">2018 by Capital G Team. University of Glasgow</a>
+            <a id="sitemap" href="{% url 'contact' %}">Contact Us</a>
+            <a id="contact" href="{% url 'sitemap' %}">Site Map</a>
+
+        </div>
+</footer>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+                integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+                integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+                crossorigin="anonymous"></script>
+    </body>
+</html>

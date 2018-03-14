@@ -38,8 +38,11 @@ urlpatterns = [
     url(r'^scot-dives/register/$', MyRegistrationView.as_view(form_class=UserForm), name='registration_register'),
     url(r'^scot-dives/', include('registration.backends.simple.urls')),
 
-    #--imam--
+    #--social-login--
     url('', include('social.apps.django_app.urls', namespace='social')),
+	
+	#--gallery--
+	url(r'^photologue/', include('photologue.urls', namespace='photologue')),
 
 
 

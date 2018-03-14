@@ -9,11 +9,26 @@
 
     <div style="height: 100%; width: 100%; margin: 0; display: table;">
 
-        <h1>
+        
+		</br>
+		</br>
+		<p>
+		
+		<h1>
             Photo Gallery
         </h1>
+  <div class="row">
+           <div>
+						
+						<li class="sub-page"><a href="{% url 'photologue:gallery-list' %}">Gallery List</a></li>
+						
+						<li class="sub-page"><a href="{% url 'photologue:photo-list' %}">All Photos</a></li>
+			</div>
+        </div>
+		
+		</p>
 
-    </div>
+  
 
 
 {% endblock %}
