@@ -43,6 +43,9 @@ urlpatterns = [
 	
 	#--gallery--
 	url(r'^photologue/', include('photologue.urls', namespace='photologue')),
+	
+	#--captcha--
+	url(r'^captcha/', include('captcha.urls')),
 
 
 
