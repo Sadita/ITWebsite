@@ -2,13 +2,11 @@ from django import forms
 from django.contrib.auth.models import User
 from scotDives.models import UserProfile
 from registration.forms import RegistrationForm
-from captcha.fields import CaptchaField#<--captcha
         
 class UserForm(RegistrationForm):
     first_name = forms.CharField(max_length=30, required=True)
     last_name = forms.CharField(max_length=50, required=True)
     username = forms.CharField(max_length=50, required=True)
-    captcha = CaptchaField()
 
     class Meta:
         model = User
