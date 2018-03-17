@@ -48,16 +48,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'scotDives',
     'star_ratings',
+    'django.contrib.sites',
     
 	#django-social-login
     'social.apps.django_app.default',
     'social_django',
-	
-	#django-gallery
-     'photologue',
-     'sortedm2m',
-	 'django.contrib.sites',
-
 	
 ]
 
@@ -117,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator', 'OPTIONS': { 'min_length': 6, }
     },
     {
         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',

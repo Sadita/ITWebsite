@@ -16,19 +16,34 @@
 		
 		<h1>
             Photo Gallery
+		 {% if user.is_authenticated %}
+			<button type="button" class="btn btn-success">
+				<a href="{% url 'picture-add' %}">
+					<span class="glyphicon glyphicon-plus"></span>&nbsp;Add Photo
+				</a>
+			</button>
+		{% endif %}
         </h1>
-  <div class="row">
-           <div>
-						
-						<li class="sub-page"><a href="{% url 'photologue:gallery-list' %}">Gallery List</a></li>
-						
-						<li class="sub-page"><a href="{% url 'photologue:photo-list' %}">All Photos</a></li>
-			</div>
-        </div>
-		
-		</p>
 
-  
+<div class="albums-container container-fluid">
 
-
+    <!-- Albums -->
+    <div class="row">
+        {% if all_pictures %}
+            {% for picture in all_pictures %}
+                <div class="col-sm-7 col-lg-5">
+                    <div class="card" style="width:400px; margin-bottom:40px;">
+                            <img class="card-img-top" src="{{ picture.pic.url }}" style="width:100%;">
+                       <div class="card-body">
+							<h4 class="card-title">{{ picture.location }}</h4>
+		  					<p class="card-text">{{ picture.description }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+		{% else %}
+						<h3>No pictures</h3>
+		{% endif %}
+    </div>
+</div></div>
 {% endblock %}

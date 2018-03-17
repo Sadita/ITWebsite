@@ -58,3 +58,17 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.user.username
 
+class Picture(models.Model):
+    location = models.CharField(max_length=250)
+    description = models.CharField(max_length=500)
+    pic = models.FileField()
+
+    def __str__(self):
+        return self.location
+
+    def get_absolute_url(self):
+        return '/scot-dives/photo-gallery/'
+        #return u'/photo-gallery/'
+        #return reverse('photogallery')
+        #def get_absolute_url(self):
+

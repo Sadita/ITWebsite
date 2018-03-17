@@ -11,7 +11,8 @@ from django.contrib.auth.models import User
 from scotDives.forms import UserProfileForm
 #from django.contrib.auth import logout as auth_logout
 # from django.template.context import RequestContext
-from scotDives.models import DiveSpot, DiveClub, DiveSite, UserProfile
+from scotDives.models import DiveSpot, DiveClub, DiveSite, UserProfile, Picture
+from django.views.generic.edit import CreateView
 
 
 def login(request):
@@ -213,3 +214,6 @@ def sitemap(request):
     # Return response back to the user, updating any cookies that need changed.
     return response
 
+class PictureCreate(CreateView):
+    model = Picture
+    fields = ['location', 'description', 'pic']

@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^sitemap/', views.sitemap, name='sitemap'),
     url(r'^profile_registration', views.register_profile, name='register_profile'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
+    url(r'^picture/add/$', views.PictureCreate.as_view(), name='picture-add'),
 
     #--imam--
     #url(r'^login/', views.login, name='login'),
