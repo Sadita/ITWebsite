@@ -214,4 +214,7 @@ SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
 #SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/scot-dives/settings/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False
 
-#-----(social login end)-----   
+#-----(captcha)-----   
+
+CAPTCHA_CHALLENGE_FUNCT = 'captcha.helpers.math_challenge'
+
