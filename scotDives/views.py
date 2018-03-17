@@ -121,7 +121,8 @@ def photogallery(request):
     # request.session.set_test_cookie()
     # page_list = Pages.objects
     # page_list = Page.objects.order_by('-views')[:5]
-    context_dict = {}
+    all_pictures = Picture.objects.all()
+    context_dict = {'all_pictures': all_pictures}
 
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)

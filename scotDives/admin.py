@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import DiveSpot, DiveClub, DiveSite
+from .models import DiveSpot, DiveClub, DiveSite, Picture
 
 
 class DiveSiteAdmin(admin.ModelAdmin):
@@ -9,4 +9,5 @@ class DiveSiteAdmin(admin.ModelAdmin):
 admin.site.register(DiveSpot)
 admin.site.register(DiveClub)
 admin.site.register(DiveSite)
+admin.site.register(Picture)
 # Register your models here.
