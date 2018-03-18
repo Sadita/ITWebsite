@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/club.css' %}" />
 
 </head>
+
 <div>
     <img src="{% static "images/scotland.jpg" %}" alt="Picture of scotland"  />
 </div>
@@ -20,11 +21,11 @@
     <div class="content" id = "content-dimension">
             <div class="row">
                 <div class="column left">
-                    <h2 id="clubTitle"></h2><br><br>
+                    <h2 id="clubTitle">Click to a Club</h2>
                     {% if all_diveClubs %}
                         <ol class="list">
                             {% for diveClub in all_diveClubs %}
-                                <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')"  style="cursor: pointer;">
+                                <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')">
                                     <b id="headline">{{ diveClub.name }}</b>
                                     </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
                             {% endfor %}
