@@ -43,7 +43,13 @@
     .review{
         position: relative;
         left: 30px;
-        bottom: 30px;
+        height: 200px;
+    }
+
+    .add-my-list{
+        position: relative;
+        left: 30px;
+        height: 70px;
 
     }
 
@@ -69,12 +75,12 @@
     .location{
         position: relative;
         left: 30px;
-        height: 100px;
+        height: 70px;
     }
 
     .description{
         position: relative;
-        width: 400px;
-        height: 100px;
+
+
         left: 30px;
     }

@@ -33,6 +33,10 @@
                 document.body.scrollTop = scroll.top;
                 document.body.scrollLeft = scroll.left;
             }());
+            if(location.hostname=='127.0.0.1')
+                {
+                    location.hostname='localhost';
+                 }
         </script>
         <!-- CSS -->
         <link href="http://v4-alpha.getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -42,7 +46,7 @@
 
         <!-- rating -->
         <link rel="stylesheet" href="{% static 'vendor/raty/lib/jquery.raty.css' %}">
-		
+
 		<!-- photologue -->
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -161,6 +165,7 @@
                 integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
                 crossorigin="anonymous"></script>
         <script src="{% static 'vendor/raty/lib/jquery.raty.js' %}"></script>
+
         {% block script_block %}
         {% endblock %}
     </body>
