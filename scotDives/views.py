@@ -42,10 +42,11 @@ def logout(request):
 #imam---
 
 def index(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
     context_dict = {}
+    # request.session.set_test_cookie()
+    divesite_list = DiveSite.objects.order_by('-rating')
+    # page_list = Page.objects.order_by('-views')[:5]
+    context_dict['divesites'] = divesite_list
 
     # Call the helper function to handle the cookies
     # visitor_cookie_handler(request)
