@@ -56,7 +56,6 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
     # Override the __unicode__() method to return out something meaningful!
     # Remember if you use Python 2.7.x, define __unicode__ too!
-    whishlist_divesite = models.ForeignKey(DiveSite)
 
     def __str__(self):
         return self.user.username
@@ -67,6 +66,7 @@ class Review(models.Model):
     user = models.ForeignKey(User)
     rating = models.IntegerField(default=0)
     comment = models.CharField(max_length=1000, default="")
+    is_favorite = models.BooleanField(default=False)
     date = models.DateTimeField(null=True)
 
     def __str__(self):

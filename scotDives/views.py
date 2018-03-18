@@ -192,6 +192,7 @@ def profile(request, username):
         return redirect('index')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm({'picture': userprofile.picture})
+    favorite_divesites = Review.objects.filter(user_id=request.user.id, is_favorite=True)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
@@ -199,7 +200,8 @@ def profile(request, username):
             return redirect('profile', user.username)
         else:
             print(form.errors)
-    return render(request, 'scotDives/profile.html', {'userprofile': userprofile, 'selecteduser': user, 'form': form})
+    return render(request, 'scotDives/profile.html', {'userprofile': userprofile, 'selecteduser': user,
+                                                      'form': form, 'favorite_divesites': favorite_divesites})
 
 
 def contact(request):
@@ -264,34 +266,25 @@ def rate(request):
     return JsonResponse({'avg_rating': divesite.rating})
 
 
+@login_required
 def add_my_list(request):
     if request.method == 'POST':
-        form = UserReviewForm(request.POST)
         divesite_id = request.POST.get('divesite_id')
+
         try:
             review = Review.objects.get(divesite_id=divesite_id, user_id=request.user.id)
         except Review.DoesNotExist:
             review = None
 
-        if form.is_valid():
-            if review:
-                if request.POST.get('rating'):
-                    review.rating = request.POST.get('rating')
-                if request.POST.get('comment'):
-                    review.comment = request.POST.get('comment')
-                review.save()
-            else:
-                review = form.save(commit=False)
-                review.divesite = DiveSite.objects.get(id=divesite_id)
-                review.user = request.user
-                review.save()
+        if review:
+            review.is_favorite = True
+            review.save()
+        else:
+            review = Review.objects.create(divesite_id=divesite_id, user_id=request.user.id)
+            review.is_favorite = True
+            review.save()
 
-            avg_rating = Review.objects.filter(divesite_id=divesite_id).aggregate(Avg('rating'))
-            divesite = DiveSite.objects.get(id=divesite_id)
-            divesite.rating = avg_rating['rating__avg']
-            divesite.save()
-
-    return JsonResponse({'avg_rating': divesite.rating})
+    return HttpResponse('')
 
 
 class PictureCreate(CreateView):

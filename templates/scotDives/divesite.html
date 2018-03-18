@@ -40,6 +40,13 @@
                         {{ divesite.latitude }} {{ divesite.longitude }}
                     </div>
                 </div>
+
+                <div class="row">
+                    <div class="col-md-12 add-my-list">
+                        <button class="btn btn-primary" id="add-my-list">Add to My Dive List</button>
+                    </div>
+                </div>
+
                 <div class="row">
                     {% if user.is_authenticated %}
                         <div class="review">
@@ -62,11 +69,7 @@
                         </div>
                     {% endif %}
                 </div>
-                <div class="row">
-                    <div class="add-my-list">
-                        <button class="btn btn-primary" id="add-my-list">Add to My Dive List</button>
-                    </div>
-                </div>
+
                 <div class="row">
                     <div class="overall-reviews">
                         <strong>Member Comments & Ratings </strong>
@@ -91,10 +94,18 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <div class="description">
-                        <strong>Description: </strong>
-                        {{ divesite.description|linebreaks }}
+                <div class="row">
+                    <div class="col-md-12 description">
+                            <strong>Description: </strong>
+                            {{ divesite.description|linebreaks }}
+                    </div>
                 </div>
+                <div class="col-md-12 row">
+                    <div class="col-md-9">
+                            <div class="alert alert-success" id="alert-success" style="display:none"></div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
@@ -150,7 +161,7 @@
                     comment: $("#comment").val(),
                 },
                 success: function(response){
-
+                    location.reload()
                 }
         })
     })
@@ -164,6 +175,11 @@
                     divesite_id: "{{ divesite.id }}",
                 },
                 success: function(response){
+                    $("#alert-success").html("Successfully Added to Future Dive List");
+                    $("#alert-success").show();
+                    setTimeout(function(){
+                        $("#alert-success").hide();
+                    }, 1000)
 
                 }
         })
