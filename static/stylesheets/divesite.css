@@ -3,7 +3,7 @@
             color: white;
             font-family: "Trebuchet MS";
             font-size: 30px;
-            padding-top:10px;
+            padding-top: 60px;
             text-indent: 30px;
             line-height: 1.5;
        }
@@ -26,40 +26,55 @@
      }
 
     #content-dimension {
-        height: calc(100vh - 94px);
+        height: 100%;
     }
 
     img {
         width: 100%;
     }
 
-    .rating{
+    .avg-rating{
         position: relative;
-        left: 10px;
+        left: 30px;
+
+
+    }
+
+    .review{
+        position: relative;
+        left: 30px;
+        bottom: 30px;
+
+    }
+
+    .overall-reviews{
+        position: relative;
+        left: 30px;
         bottom: 10px;
-        height: 0px;
+    }
+
+    .border{
+        border-style: dotted;
+        border-color: blue;
+        margin: 10px;
+        padding: 10px;
     }
 
     .image{
         position: relative;
-        top: 30px;
-        left: 10px;
-        width: 50%;
-        height: 0px;
+        left: 30px;
+
     }
 
     .location{
         position: relative;
-        top: 250px;
-        left: 10px;
-        bottom: 10px;
-        height: 0px;
+        left: 30px;
+        height: 100px;
     }
 
     .description{
         position: relative;
-        top: 30px;
-        left: 500px;
         width: 400px;
         height: 100px;
+        left: 30px;
     }
