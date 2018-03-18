@@ -25,62 +25,59 @@
 
      }
 
-    #content-dimension {
-        height: 100%;
-    }
+     .content-display{
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px
+     }
 
     img {
         width: 100%;
     }
 
     .avg-rating{
-        position: relative;
-        left: 30px;
-
-
+        margin: 10px;
     }
 
     .review{
-        position: relative;
-        left: 30px;
-        height: 200px;
+        margin-bottom: 30px;
     }
 
     .add-my-list{
-        position: relative;
-        left: 30px;
-        height: 70px;
-
+        margin-left: 270px;
+        margin-bottom: 30px;
     }
 
     .overall-reviews{
-        position: relative;
-        left: 30px;
-        bottom: 10px;
+
     }
 
     .border{
         border-style: dotted;
-        border-color: blue;
+        border-color: #7b7b9a;
         margin: 10px;
         padding: 10px;
     }
 
     .image{
-        position: relative;
-        left: 30px;
 
     }
 
     .location{
-        position: relative;
-        left: 30px;
-        height: 70px;
+        margin-bottom: 30px;
     }
 
     .description{
-        position: relative;
 
+    }
 
-        left: 30px;
+    .cancel-on-png, .cancel-off-png, .star-on-png, .star-off-png, .star-half-png {
+        font-size: 25px;
+        color: cadetblue;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #32648c;
+        border-color: #4b5054;
     }

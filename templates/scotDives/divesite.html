@@ -9,107 +9,104 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/divesite.css' %}" />
 </head>
-<div class="content" id = "content-dimension">
+<div class="content">
     {% if divesite %}
         <h1>
             {{ divesite.name }}
         </h1>
-
-        <div class="avg-rating">
-            <div class="row">
-                <div class="col-md-3">
-                    <div id = "avg-rating"></div>
-                </div>
-                <div class="col-md-2">
-                    {{ reviews.count }} ratings
+        <div class="content-display">
+            <div class="avg-rating">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div id = "avg-rating"></div>
+                    </div>
+                    <div class="col-md-2">
+                        <strong>{{ reviews.count }} ratings</strong>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class ="image">
-                        <img src="{% static divesite.image %}"
-                             alt="Picture of the Dive Site" />
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class ="col-md-12 image">
+                            <img src="{% static divesite.image %}"
+                                 alt="Picture of the Dive Site" />
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="location">
-                        <strong>Lat. & Long: </strong>
-                        {{ divesite.latitude }} {{ divesite.longitude }}
+                    <div class="row">
+                        <div class="col-md-12 location">
+                            <strong>Lat. & Long: </strong>
+                            {{ divesite.latitude }} {{ divesite.longitude }}
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 add-my-list">
-                        <button class="btn btn-primary" id="add-my-list">Add to My Dive List</button>
+                    <div class="row">
+                        <div class="col-md-12 add-my-list">
+                            <button class="btn btn-primary" id="add-my-list">Add to My Dive List</button>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    {% if user.is_authenticated %}
-                        <div class="review">
-                            <div>Write Comment & Rate {{ divesite.name }}</div>
-                            {% csrf_token %}
-                            <textarea name="comment" id="comment" cols="50"></textarea>
-                            <div class="row">
-                                <div class="col-md-9">
-                                    <div data-score = "{{ user_rating }}" id = "user-rating"></div>
-                                </div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-primary" id="comment-submit">Submit</button>
+                    <div class="row">
+                        {% if user.is_authenticated %}
+                            <div class="col-md-12 review">
+                                <div>Write Comment & Rate {{ divesite.name }}</div>
+                                {% csrf_token %}
+                                <textarea name="comment" id="comment" cols="50"></textarea>
+                                <div class="row">
+                                    <div class="col-md-8">
+                                        <div data-score = "{{ user_rating }}" id = "user-rating"></div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <button class="btn btn-primary" id="comment-submit">Submit</button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                    {% else %}
-                        <div class="review">
-                            <strong>Please login to rate this dive site.</strong>
-                        </div>
-                    {% endif %}
-                </div>
-
-                <div class="row">
-                    <div class="overall-reviews">
-                        <strong>Member Comments & Ratings </strong>
-                        {% if reviews %}
-                            {% for review in reviews %}
-                                <div class="border">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <strong>{{ review.user.first_name }}  {{ review.user.last_name }}</strong>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div data-score = "{{ review.rating }}" class = "all-reviews"></div>
-                                        </div>
-                                    </div>
-                                    <div>{{ review.comment }}</div>
-                                </div>
-                            {% endfor %}
                         {% else %}
-                            <div>No reviews have been posted yet.</div>
+                            <div class="col-md-12 review">
+                                <strong>Please login to rate this dive site.</strong>
+                            </div>
                         {% endif %}
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-12 description">
-                            <strong>Description: </strong>
-                            {{ divesite.description|linebreaks }}
-                    </div>
-                </div>
-                <div class="col-md-12 row">
-                    <div class="col-md-9">
-                            <div class="alert alert-success" id="alert-success" style="display:none"></div>
-                    </div>
-                </div>
 
+                    <div class="row">
+                        <div class="col-md-12 overall-reviews">
+                            <strong>Member Comments & Ratings </strong>
+                            {% if reviews %}
+                                {% for review in reviews %}
+                                    <div class="border">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <strong>{{ review.user.first_name }}  {{ review.user.last_name }}</strong>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div data-score = "{{ review.rating }}" class = "all-reviews"></div>
+                                            </div>
+                                        </div>
+                                        <div>{{ review.comment }}</div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div>No reviews have been posted yet.</div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12 description">
+                                <strong>Description: </strong>
+                                {{ divesite.description|linebreaks }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-9 alert alert-success" id="alert-success" style="display:none"></div>
+                    </div>
+
+                </div>
             </div>
         </div>
-
-
 
     {% else %}
         <strong>Information on the selected dive site is currently unavailable.</strong>

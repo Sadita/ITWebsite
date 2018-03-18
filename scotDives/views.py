@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from scotDives.forms import UserProfileForm, UserReviewForm
 #from django.contrib.auth import logout as auth_logout
 # from django.template.context import RequestContext
-from scotDives.models import DiveClub, DiveSite, UserProfile, Picture, Review
+from scotDives.models import DiveClub, DiveSite, UserProfile, Picture, Review, FutureDive
 from django.views.generic.edit import CreateView
 from django.db.models import Avg
 
@@ -192,7 +192,7 @@ def profile(request, username):
         return redirect('index')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm({'picture': userprofile.picture})
-    favorite_divesites = Review.objects.filter(user_id=request.user.id, is_favorite=True)
+    favorite_divesites = FutureDive.objects.filter(user=request.user)
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
@@ -269,22 +269,28 @@ def rate(request):
 @login_required
 def add_my_list(request):
     if request.method == 'POST':
-        divesite_id = request.POST.get('divesite_id')
-
         try:
-            review = Review.objects.get(divesite_id=divesite_id, user_id=request.user.id)
-        except Review.DoesNotExist:
-            review = None
+            divesite = DiveSite.objects.get(id=request.POST.get('divesite_id'))
+            try:
+                FutureDive.objects.get(divesite=divesite, user=request.user)
+            except FutureDive.DoesNotExist:
+                FutureDive.objects.create(divesite=divesite, user=request.user)
+        finally:
+            return HttpResponse('')
 
-        if review:
-            review.is_favorite = True
-            review.save()
-        else:
-            review = Review.objects.create(divesite_id=divesite_id, user_id=request.user.id)
-            review.is_favorite = True
-            review.save()
 
-    return HttpResponse('')
+@login_required
+def remove_from_my_list(request, divesite_id):
+    if request.method == 'POST':
+        try:
+            divesite = DiveSite.objects.get(id=divesite_id)
+            try:
+                FutureDive.objects.get(divesite=divesite, user=request.user).delete()
+            except FutureDive.DoesNotExist:
+                print('Could not be deleted from favorite dive sites')
+
+        finally:
+            return HttpResponse('')
 
 
 class PictureCreate(CreateView):

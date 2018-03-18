@@ -66,12 +66,18 @@ class Review(models.Model):
     user = models.ForeignKey(User)
     rating = models.IntegerField(default=0)
     comment = models.CharField(max_length=1000, default="")
-    is_favorite = models.BooleanField(default=False)
     date = models.DateTimeField(null=True)
 
     def __str__(self):
         return self.rating
 
+
+class FutureDive(models.Model):
+    divesite = models.ForeignKey(DiveSite)
+    user = models.ForeignKey(User)
+
+    def __str__(self):
+        return self.rating
 
 
 

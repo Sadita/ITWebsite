@@ -4,12 +4,15 @@
 {% block title %}{{ selecteduser.username }} Profile{% endblock %}
 {% block body_block %}
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css"
+		  integrity="sha384-3AB7yXWz4OeoZcPbieVW64vVXEwADiYyAEhwilzWsLw+9FgqpyjjStpPnpBO8o8S"
+		  crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
 	rel="stylesheet">
@@ -21,7 +24,11 @@
 	<h4> My Future Dives List</h4>
 	{% for favorite in favorite_divesites %}
 		<ul class="a">
-			<li><a href="{% url 'show_site' favorite.divesite.slug %}">{{ favorite.divesite.name }}</a></li>
+			<li>
+				<a href="{% url 'show_site' favorite.divesite.slug %}">{{ favorite.divesite.name }}</a>
+				<a href="{% url 'remove_from_my_list' favorite.divesite.id %}"
+				   class="remove-favorite" style="color:red"><i class="fas fa-trash-alt"></i></a>
+			</li>
 		</ul>
 	{% endfor %}
 </div>
@@ -44,4 +51,22 @@
 	</form>
 	{% endif %}
 </div>
+{% endblock %}
+
+
+{% block script_block %}
+<script>
+	$(".remove-favorite").click(function(e){
+		e.preventDefault();
+		$.post({
+			url: $(this).attr('href'),
+			data: {
+			csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
+			},
+			success: function(){
+				location.reload()
+			}
+		})
+	})
+</script>
 {% endblock %}
