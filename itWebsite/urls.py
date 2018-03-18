@@ -40,5 +40,10 @@ urlpatterns = [
 
     #--social-login--
     url('', include('social.apps.django_app.urls', namespace='social')),
+	
+	#--captcha-- 
+    url(r'^captcha/', include('captcha.urls')), 
+	
+	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
