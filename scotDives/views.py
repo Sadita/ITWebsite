@@ -176,12 +176,11 @@ def register_profile(request):
         user_profile = form.save(commit=False)
         user_profile.user = request.user
         user_profile.save()
-        human = True
         return redirect('index')
     else:
         print(form.errors)
     context_dict = {'form':form}
-    return render(request, 'scotDives/profile_registration.html', context_dict, locals())
+    return render(request, 'scotDives/profile_registration.html', context_dict)
 
 
 @login_required
