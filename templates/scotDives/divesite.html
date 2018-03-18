@@ -63,6 +63,11 @@
                     {% endif %}
                 </div>
                 <div class="row">
+                    <div class="add-my-list">
+                        <button class="btn btn-primary" id="add-my-list">Add to My Dive List</button>
+                    </div>
+                </div>
+                <div class="row">
                     <div class="overall-reviews">
                         <strong>Member Comments & Ratings </strong>
                         {% if reviews %}
@@ -143,6 +148,20 @@
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
                     divesite_id: "{{ divesite.id }}",
                     comment: $("#comment").val(),
+                },
+                success: function(response){
+
+                }
+        })
+    })
+
+    $("#add-my-list").click(function(){
+        $.ajax({
+            url: "{% url 'add_my_list' %}",
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    divesite_id: "{{ divesite.id }}",
                 },
                 success: function(response){
 
