@@ -59,43 +59,23 @@
                         on your trips below the surface of Scotland’s chilly waters.
                 </div>
             </div>
-            <div class="column">
-                <div id="top" class="row marketing">
-                    <div class="col-lg-6">
-                        <h3>Top Rated Dives</h3>
-                        <p>
-                        {% if divesites %}
-                            <ul style="list-style-type:none">
-                                {% for divesite in divesites %}
-                                    <li>
-                                    <a href="{% url 'show_site' divesite.slug %}">{{ divesite.name }}</a>
-                                        <a> : {{ divesite.rating }}</a>
-                                    </li>
-                                {% endfor %}
-                            </ul>
-                            {% else %}
-                                <strong>There are no dive sites present.</strong>
-                            {% endif %}
-                        </p>
-                    </div>
-                </div>
-            </div>
 
             <div class="column">
-                <div id="photos" class="row marketing">
-                    <div class="col-lg-6">
-                        <h3>Photos</h3>
-                        <a href="/scot-dives/photo-gallery/">
-                            <img src="{% static "images/fifeness.jpg" %}" alt="My image"/>
-                        </a>
-                    </div>
+            <div id="top" class="row marketing">
+                <div class="col-lg-6">
+                <h3>Top Rated Dives</h3>
+                <ul>
+                    <li>Fife Ness</li>
+                    <li>SS Afton</li>
+                    <li>Kentallen Wall</li>
+                </ul>
                 </div>
             </div>
-
+            </div>
         </div>
         <div id="tweeter" class="column">
             <h3 class="tweetHeadline">Our Tweets</h3>
-            <a class="twitter-timeline" data-width="380"  data-height="800" href="https://twitter.com/ScotDives?ref_src=twsrc%5Etfw">Tweets by ScotDives</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+            <a class="twitter-timeline" data-width="380"  data-height="460" href="https://twitter.com/ScotDives?ref_src=twsrc%5Etfw">Tweets by ScotDives</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
              <br>   <a class="twitter-follow-button"
                   href="https://twitter.com/scotdives"
                   data-size="large">

@@ -1,0 +1,47 @@
+{% extends 'scotDives/base.html' %}
+{% load staticfiles %}
+
+{% block title %}{{ selecteduser.username }} Profile{% endblock %}
+{% block body_block %}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
+	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="{% static 'stylesheets/profile.css' %}" />
+<div class="jumbotron">
+<h1>{{selecteduser.username}}'s Profile</h1>
+
+<div class="card bg-secondary text-white" style="width:250px">
+	<h4> My Future Dives List</h4>
+	{% for favorite in favorite_divesites %}
+		<ul class="a">
+			<li><a href="{% url 'show_site' favorite.divesite.slug %}">{{ favorite.divesite.name }}</a></li>
+		</ul>
+	{% endfor %}
+</div>
+<br>
+	{% if userprofile.picture.url|length > 0 %}
+		<img src="{{ MEDIA_URL }}{{ userprofile.picture.url }}"
+			 width="300"
+			 height="300"
+			 alt="{{selecteduser.username}}" />
+	{% else %}
+    	None
+	{% endif %}
+<br/>
+<div>
+	{% if selecteduser.username == user.username %}
+	<form method="post" action="." enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<input type="submit" value="Update" />
+	</form>
+	{% endif %}
+</div>
+{% endblock %}

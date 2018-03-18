@@ -1,0 +1,24 @@
+p.register {
+    text-align: center;
+}
+
+h2 {
+
+    padding-top: 100px;
+    text-align: center;
+}
+
+div.button {
+    text-align: center;
+}
+
+.content {
+        max-width: 930px;
+        margin: auto;
+        background: white;
+
+}
+
+#content-dimension {
+        height: calc(100vh - 94px);
+}

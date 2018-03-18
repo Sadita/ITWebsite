@@ -1,7 +1,6 @@
-   #map {
-        height: 750px;
-        width: 750px;
-        margin-bottom: 100px;
+    #map {
+        height: 100%;
+        width: 100%;
        }
 
 
@@ -15,6 +14,7 @@
 
     #content-dimension {
         height: calc(100vh - 94px);
+        margin-bottom: 30px;
     }
 
     h1 {
@@ -28,4 +28,3 @@
         width: 100%;
 
     }
-
