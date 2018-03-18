@@ -15,29 +15,140 @@
             {{ divesite.name }}
         </h1>
 
-        <div class="rating">
-            <strong>Rating: </strong>
-            {{ divesite.rating }}
+        <div class="avg-rating">
+            <div class="row">
+                <div class="col-md-3">
+                    <div id = "avg-rating"></div>
+                </div>
+                <div class="col-md-2">
+                    {{ reviews.count }} ratings
+                </div>
+            </div>
         </div>
 
-        <div class ="image">
-        <img src="{% static divesite.image %}"
-                 alt="Picture of the Dive Site" />
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class ="image">
+                        <img src="{% static divesite.image %}"
+                             alt="Picture of the Dive Site" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="location">
+                        <strong>Lat. & Long: </strong>
+                        {{ divesite.latitude }} {{ divesite.longitude }}
+                    </div>
+                </div>
+                <div class="row">
+                    {% if user.is_authenticated %}
+                        <div class="review">
+                            <div>Write Comment & Rate {{ divesite.name }}</div>
+                            {% csrf_token %}
+                            <textarea name="comment" id="comment" cols="50"></textarea>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <div data-score = "{{ user_rating }}" id = "user-rating"></div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-primary" id="comment-submit">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    {% else %}
+                        <div class="review">
+                            <strong>Please login to rate this dive site.</strong>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row">
+                    <div class="overall-reviews">
+                        <strong>Member Comments & Ratings </strong>
+                        {% if reviews %}
+                            {% for review in reviews %}
+                                <div class="border">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <strong>{{ review.user.first_name }}  {{ review.user.last_name }}</strong>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div data-score = "{{ review.rating }}" class = "all-reviews"></div>
+                                        </div>
+                                    </div>
+                                    <div>{{ review.comment }}</div>
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div>No reviews have been posted yet.</div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="description">
+                        <strong>Description: </strong>
+                        {{ divesite.description|linebreaks }}
+                </div>
+            </div>
         </div>
 
-        <div class="description">
-            <strong>Description: </strong>
-            {{ divesite.description|linebreaks }}
-        </div>
 
-        <div class="location">
-            <strong>Lat. & Long: </strong>
-            {{ divesite.latitude }} {{ divesite.longitude }}
-        </div>
 
     {% else %}
         <strong>Information on the selected dive site is currently unavailable.</strong>
     {% endif %}
+
 </div>
 
+{% endblock %}
+
+{% block script_block %}
+<script>
+    $('#avg-rating').raty({
+        starType: 'i',
+        readOnly: true,
+        score: {{ divesite.rating }}
+    });
+
+    $('.all-reviews').raty({
+        starType: 'i',
+        readOnly: true,
+    });
+
+    $('#user-rating').raty({
+        starType: 'i',
+        click: function(score, evt){
+            $.ajax({
+                url: "{% url 'review' %}",
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    divesite_id: "{{ divesite.id }}",
+                    rating: score,
+                },
+                success: function(response){
+                    console.log(response.avg_rating);
+                    $('#avg-rating').raty('set', {'score': response.avg_rating});
+                }
+            })
+         }
+    });
+
+    $("#comment-submit").click(function(){
+        $.ajax({
+            url: "{% url 'review' %}",
+                method: 'POST',
+                data: {
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    divesite_id: "{{ divesite.id }}",
+                    comment: $("#comment").val(),
+                },
+                success: function(response){
+
+                }
+        })
+    })
+
+</script>
 {% endblock %}

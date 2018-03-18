@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'scotDives',
-    'star_ratings',
     'django.contrib.sites',
     
 	#django-social-login

@@ -31,7 +31,7 @@ class DiveSite(models.Model):
         super(DiveSite, self).save(*args, **kwargs)
 
     class Meta:
-        verbose_name_plural = 'DiveSiteList'
+        verbose_name_plural = 'Divesites'
 
     def __str__(self):
         return self.name
@@ -48,6 +48,7 @@ class DiveClub(models.Model):
     def __str__(self):
         return self.name
 
+
 class UserProfile(models.Model):
     # This line is required. Links UserProfile to a User model instance.
     user = models.OneToOneField(User)
@@ -55,8 +56,23 @@ class UserProfile(models.Model):
     picture = models.ImageField(upload_to='profile_images', blank=True)
     # Override the __unicode__() method to return out something meaningful!
     # Remember if you use Python 2.7.x, define __unicode__ too!
+
     def __str__(self):
         return self.user.username
+
+
+class Review(models.Model):
+    divesite = models.ForeignKey(DiveSite)
+    user = models.ForeignKey(User)
+    rating = models.IntegerField(default=0)
+    comment = models.CharField(max_length=1000, default="")
+    date = models.DateTimeField(null=True)
+
+    def __str__(self):
+        return self.rating
+
+
+
 
 class Picture(models.Model):
     location = models.CharField(max_length=250)

@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, render_to_response, redirect
 # from scotDives.models import DiveList
 # from scotDives.forms import CategoryForm, PageForm, UserForm, UserProfileForm
@@ -8,11 +8,12 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.shortcuts import render_to_response, redirect, render
 from django.contrib.auth.models import User
-from scotDives.forms import UserProfileForm
+from scotDives.forms import UserProfileForm, UserReviewForm
 #from django.contrib.auth import logout as auth_logout
 # from django.template.context import RequestContext
-from scotDives.models import DiveSpot, DiveClub, DiveSite, UserProfile, Picture
+from scotDives.models import DiveClub, DiveSite, UserProfile, Picture, Review
 from django.views.generic.edit import CreateView
+from django.db.models import Avg
 
 
 def login(request):
@@ -75,10 +76,6 @@ def divesites(request):
     # page_list = Page.objects.order_by('-views')[:5]
     context_dict['divesites'] = divesite_list
 
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/divesitelist.html', context=context_dict)
     # Return response back to the user, updating any cookies that need changed.
     return response
@@ -87,21 +84,37 @@ def divesites(request):
 def show_site(request, divesite_name_slug):
     context_dict = {}
     try:
-        # request.session.set_test_cookie()
+        # adding the divesite model to the dictionary
         divesite = DiveSite.objects.get(slug=divesite_name_slug)
-        # page_list = Page.objects.order_by('-views')[:5]
         context_dict['divesite'] = divesite
 
     except DiveSite.DoesNotExist:
         context_dict['divesite'] = None
 
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
+    try:
+        reviews = Review.objects.filter(divesite=divesite)
+        context_dict['reviews'] = reviews
 
-    response = render(request, 'scotDives/divesite.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
-    return response
+    except Review.DoesNotExist:
+        context_dict['reviews'] = None
+
+    if request.user.is_authenticated():
+        try:
+            # adding the user rating from the Review model to the dictionary
+            user_rating = Review.objects.get(divesite=divesite, user=request.user).rating
+            context_dict['user_rating'] = user_rating
+
+        except Review.DoesNotExist:
+            context_dict['user_rating'] = 0
+
+        response = render(request, 'scotDives/divesite.html', context=context_dict)
+        # Return response back to the user, updating any cookies that need changed.
+        return response
+
+    else:
+        response = render(request, 'scotDives/divesite.html', context=context_dict)
+        # Return response back to the user, updating any cookies that need changed.
+        return response
 
 
 def clubmap(request):
@@ -152,6 +165,7 @@ def search(request):
     # Return response back to the user, updating any cookies that need changed.
     return response
 
+
 @login_required
 def register_profile(request):
     form = UserProfileForm()
@@ -167,6 +181,7 @@ def register_profile(request):
         print(form.errors)
     context_dict = {'form':form}
     return render(request, 'scotDives/profile_registration.html', context_dict)
+
 
 @login_required
 def profile(request, username):
@@ -215,6 +230,40 @@ def sitemap(request):
     # Return response back to the user, updating any cookies that need changed.
     return response
 
+
+@login_required
+def rate(request):
+
+    if request.method == 'POST':
+        form = UserReviewForm(request.POST)
+        divesite_id = request.POST.get('divesite_id')
+        try:
+            review = Review.objects.get(divesite_id=divesite_id, user_id=request.user.id)
+        except Review.DoesNotExist:
+            review = None
+
+        if form.is_valid():
+            if review:
+                if request.POST.get('rating'):
+                    review.rating = request.POST.get('rating')
+                if request.POST.get('comment'):
+                    review.comment = request.POST.get('comment')
+                review.save()
+            else:
+                review = form.save(commit=False)
+                review.divesite = DiveSite.objects.get(id=divesite_id)
+                review.user = request.user
+                review.save()
+                
+            avg_rating = Review.objects.filter(divesite_id=divesite_id).aggregate(Avg('rating'))
+            divesite = DiveSite.objects.get(id=divesite_id)
+            divesite.rating = avg_rating['rating__avg']
+            divesite.save()
+
+    return JsonResponse({'avg_rating': divesite.rating})
+
+
 class PictureCreate(CreateView):
     model = Picture
     fields = ['location', 'description', 'pic']
+
