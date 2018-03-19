@@ -3,7 +3,7 @@
             color: white;
             font-family: "Trebuchet MS";
             font-size: 30px;
-            padding-top: 60px;
+            padding-top: 20px;
             text-indent: 30px;
             line-height: 1.5;
        }
@@ -22,6 +22,7 @@
         max-width: 930px;
         margin: auto;
         background: white;
+        margin-bottom: 50px;
 
      }
 

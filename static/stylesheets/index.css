@@ -5,31 +5,32 @@
 }
 
 #top {
-	border-radius: 25px;
+	border-radius: 15px;
 	padding-left: 0px;
 	padding-right: 0px;
 	padding-bottom: 50px;
 	padding-top: 50px;
     background-color: rgb(40, 46, 120);
     margin-left: 100px;
+    margin-right: 100px;
     margin-top: 50px;
     color: white
 }
 
 #photos{
-    border-radius: 25px;
+    border-radius: 15px;
 	padding-left: 0px;
 	padding-right: 0px;
 	padding-bottom: 50px;
 	padding-top: 50px;
     background-color: rgb(40, 46, 120);
-    margin-left: 100px;
+    margin-left: 50px;
     margin-top: 50px;
     color: white
 }
 
 #tweeter, #about {
-    border-radius: 25px;
+    border-radius: 15px;
 	padding-left: 50px;
 	padding-right: 50px;
 	padding-bottom: 50px;
@@ -65,8 +66,8 @@ h3 {
 }
 
 img {
-
-        width: 100%;
+    
+    width: 100%;
 
     }
 
