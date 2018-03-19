@@ -5,6 +5,9 @@ import django
 
 django.setup()
 from scotDives.models import DiveSite, DiveClub
+from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
+from scotDives.models import UserProfile
 
 
 def populate():
@@ -56,6 +59,13 @@ def populate():
         "Marine Quest": {"telephone": '0189 075 2444', "latitude": 55.873526, "longitude": -2.092201, "address": "Eyemouth"},
         }
 
+    users = {
+        "Rebecca": {"first_name": "Rebecca", "last_name": "McGinn", "email": "1105308M@student.gla.ac.uk", "password": make_password("RMGlasgow")},
+        "Christos": {"first_name": "Christos", "last_name": "Karangelis", "email": "2345191K@student.gla.ac.uk", "password": make_password("CKGlasgow")},
+        "Sadita": {"first_name": "Sadita", "last_name": "Ahmed", "email": "2304007A@student.gla.ac.uk", "password": make_password("SAGlasgow")},
+        "Imam": {"first_name": "Imma", "last_name": "Reiza", "email": "2274277R@student.gla.ac.uk", "password": make_password("IRGlasgow")},
+        }
+
     for divesite, divesite_data in divesitelist.items():
         c = add_site(divesite, divesite_data["rating"], divesite_data["latitude"], divesite_data["longitude"],
                      divesite_data["description"], divesite_data["image"])
@@ -70,6 +80,11 @@ def populate():
     for d in DiveClub.objects.all():
         print(" - {0}".format(str(d)))
 
+    for username, user_data in users.items():
+        username = add_user(username, user_data["first_name"], user_data["last_name"], user_data["email"], user_data["password"])
+
+    for h in User.objects.all():
+        print(" - {0}".format(str(h)))
 
 def add_site(name, rating, latitude, longitude, description, image):
     c = DiveSite.objects.get_or_create(name=name)[0]
@@ -81,7 +96,6 @@ def add_site(name, rating, latitude, longitude, description, image):
     c.save()
     return c
 
-
 def add_club(name, telephone, latitude, longitude, address):
     d = DiveClub.objects.get_or_create(name=name)[0]
     d.telephone = telephone
@@ -90,6 +104,15 @@ def add_club(name, telephone, latitude, longitude, address):
     d.address = address
     d.save()
     return d
+
+def add_user(username, first_name, last_name, email, password):
+    username = User.objects.get_or_create(username=username)[0]
+    username.first_name = first_name
+    username.last_name = last_name
+    username.email = email
+    username.password = password
+    username.save()
+    return username
 
 
 if __name__ == '__main__':
