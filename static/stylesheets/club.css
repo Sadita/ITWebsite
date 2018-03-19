@@ -19,6 +19,8 @@
         height: 500px;
         overflow: auto;
         margin-right: 50px;
+        margin-top: 50px;
+        margin-bottom: 100px;
 
     }
 
@@ -29,16 +31,18 @@
 }
 
 
-    #clubTitle {
+#headline {
 
-        color: blue;
-        margin-top: 50px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
 
-    }
+#clubTitle {
 
-    p {
-       color: blue;
-    }
+    margin-bottom: 50px;
+    margin-top: 50px;
+
+}
 
     h1 {
             background: #7593c4;

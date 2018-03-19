@@ -21,13 +21,14 @@
     <div class="content" id = "content-dimension">
             <div class="row">
                 <div class="column left">
-                    <h2 id="clubTitle">Click to a Club</h2>
+                    <h2 id="clubTitle">Click to Show Location</h2>
                     {% if all_diveClubs %}
                         <ol class="list">
                             {% for diveClub in all_diveClubs %}
                                 <li><a id="listItem" onclick="myFunction('{{ diveClub.name }}')">
                                     <b id="headline">{{ diveClub.name }}</b>
-                                    </br> {{ diveClub.address }} </br> {{ diveClub.telephone }}</a></li>
+                                    <br> {{ diveClub.address }} <br> {{ diveClub.telephone }}</a></li>
+                                    <br>
                             {% endfor %}
                         </ol>
                     {% endif %}

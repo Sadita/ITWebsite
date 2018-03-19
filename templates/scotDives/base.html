@@ -66,7 +66,7 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- <img id="logo" src="{% static "images/favicon.ico" %}" alt="logo"/> -->
+        <img id="logo" src="{% static "images/favicon.ico" %}" alt="logo" />
         <a class="navbar-brand" href="{% url 'index' %}">ScotDives</a>
 
         <div class="collapse navbar-collapse" id="navbar" hei>
@@ -146,9 +146,9 @@
 <footer id="footer" class="container-fluid bg-4 text-center">
 
         <div>
-            <a id="team">2018 by Capital G Team. University of Glasgow</a>
-            <a id="sitemap" href="{% url 'contact' %}">Contact Us</a>
-            <a id="contact" href="{% url 'sitemap' %}">Site Map</a>
+            <a id="sitemap" href="{% url 'sitemap' %}">Site Map</a>
+            <a id="team">Team Capital G. University of Glasgow 2018</a>
+            <a id="contact" href="{% url 'contact' %}">Contact Us</a>
 
         </div>
 </footer>

@@ -2,10 +2,17 @@
     padding-bottom: 0px;
 }
 
+@media screen and (max-width: 1024px) {
+    #logo {
+        display: none;
+    }
+}
+
 #logo {
 
-    height: 90px;
-    width: 90px;
+    height: 50px;
+    width: 50px;
+
 }
 /* Shared */
 .loginBtn {
@@ -89,29 +96,22 @@
       padding: 10px;
   }
 
-  #logout {
+  #sitemap {
+
     float: left;
     margin-left: 40px;
   }
 
-  #login {
-    float: left; margin-left: 40px;
-  }
-
-  #sitemap {
+  #contact {
 
     float: right;
     margin-right: 40px;
   }
 
-  #contact {
-
-     float: right;
-    margin-right: 40px;
-  }
-
   #team {
+
     color: white;
+    text-align: center;
   }
 
    #footer{

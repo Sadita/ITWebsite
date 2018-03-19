@@ -11,7 +11,7 @@ from scotDives.models import UserProfile
 
 
 def populate():
-    divesitelist = {"Fife Ness": {"rating": 4.5, "latitude": 55.355163, "longitude": -3.378207,
+    divesitelist = {"Fife Ness": {"rating": 4.5, "latitude": 56.278470, "longitude": -2.591467,
                                   "description": "Two possible entry points. The first is directly in front of the "
                                                  "parking spaces. This ‘lagoon’ is usually very calm, clear and "
                                                  "makes an excellent training location. Lots of fish and crabs can "
@@ -23,7 +23,7 @@ def populate():
                                                  "Level: All levels, suitable for training beginners \n\nDepth: 15m "
                                                  "\n\nAvailable Parking: On site in front of first entry point",
                                   "image": "images/fifeness.jpg"},
-                    "Isle of May": {"rating": 2.5, "latitude": 56.174592, "longitude": -5.083394,
+                    "Isle of May": {"rating": 2.5, "latitude": 56.183826, "longitude": -2.565637,
                                     "description": "To reach the May Isle, you can either take your own boat and "
                                     			"dock at one of the two inlets, or hop on the May Princess ferry for "
                                     			"a slower transfer. The Isle is home to hundreds of puffins who will "
@@ -33,12 +33,12 @@ def populate():
                                     			"Isle. \n\nDifficulty Level: ??????????????????????? \n\nDepth: >40m "
                                                  "\n\nAvailable Parking: Parking available at harbour in Anstruther",
                                                  "image": "images/isleofman.jpg"},
-                    "Kentallen Wall": {"rating": 3, "latitude": 56.385906, "longitude": -2.974244,
+                    "Kentallen Wall": {"rating": 3, "latitude": 56.663384, "longitude": -5.252388,
                                        "description": "a descritopn  for Kentallen Wall\n\nDifficulty Level: "
                                                 "??????????????????????? \n\nDepth: ?????????m"
                                                  "\n\nAvailable Parking: In the Holly Tree carpark in front of the pier",
                                                 "image": "images/kentallenwall.jpg"},
-                    "The Slates (Ballachulish)": {"rating": 2, "latitude": 55.432373, "longitude": -3.156804,
+                    "The Slates (Ballachulish)": {"rating": 2, "latitude": 56.686069, "longitude": -5.208013,
                                                   "description": "There are several entry points here. From the parking "
                                                   "area, you can walk straight towards the loch and down the slope into "
                                                   "the water. This area is ideal for training due to its sandy base and "
@@ -48,7 +48,7 @@ def populate():
                                                   "around 20m depth.\n\nDifficulty Level: ??????????????????????? \n\nDepth: "
                                                  "\n\nAvailable Parking: On site in front of first entry point",
                                                  "image": "images/isleofman.jpg"},
-                    "SS Afton": {"rating": 3.5, "latitude": 55.341912, "longitude": -4.733811,
+                    "Isle of Mull": {"rating": 3.5, "latitude": 56.459406, "longitude": -6.028123,
                                  "description": "a descritopn  for SS Afton", "image": "images/ssafton.jpg"}
                     }
 
@@ -57,6 +57,7 @@ def populate():
         "Scottish Sub Aqua Club": {"telephone": '0800 228 9099', "latitude": 55.968677, "longitude": -3.192192, "address": "Edinburgh"},
         "Divebunker": {"telephone": '01592 874380', "latitude": 56.066473, "longitude": -3.229619, "address": "Burntisland"},
         "Marine Quest": {"telephone": '0189 075 2444', "latitude": 55.873526, "longitude": -2.092201, "address": "Eyemouth"},
+        "Cupar Sub Aqua Club": {"telephone": '01334 471457', "latitude": 56.317979, "longitude": -3.010441, "address": "Cupar"},
         }
 
     users = {
