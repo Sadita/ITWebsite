@@ -1,10 +1,34 @@
-#about, #top {
+#about {
     margin: auto;
     text-align: center;
 	color: white
 }
 
-#top, #tweeter, #about {
+#top {
+	border-radius: 25px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 50px;
+	padding-top: 50px;
+    background-color: rgb(40, 46, 120);
+    margin-left: 100px;
+    margin-top: 50px;
+    color: white
+}
+
+#photos{
+    border-radius: 25px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 50px;
+	padding-top: 50px;
+    background-color: rgb(40, 46, 120);
+    margin-left: 100px;
+    margin-top: 50px;
+    color: white
+}
+
+#tweeter, #about {
     border-radius: 25px;
 	padding-left: 50px;
 	padding-right: 50px;
@@ -16,9 +40,13 @@
     color: white
 }
 
+.twitter-timeline{
+
+    data-width: 380px;
+    data-height= 460px;
+}
 
 .row {
-    text-align: center;
     margin: auto;
 }
 
@@ -52,6 +80,6 @@ img {
      margin: auto;
      background: white;
      padding: 10px;
+     margin-bottom: 100px;
 }
-
 

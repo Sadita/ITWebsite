@@ -50,9 +50,10 @@ def populate():
                     }
 
     diveclublist = {
-        "Club 1.1": {"telephone": 134324, "latitude": 55.355163, "longitude": -3.378207, "address": "address1"},
-        "Club 2.1": {"telephone": 234324, "latitude": 56.174592, "longitude": -5.083394, "address": "address2"},
-        "Club 3.1": {"telephone": 334324, "latitude": 56.385906, "longitude": -2.974244, "address": "address3"},
+        "Aquatron Dive Centre": {"telephone": '0141 429 7575', "latitude": 55.856376, "longitude": -4.244666, "address": "Glasgow"},
+        "Scottish Sub Aqua Club": {"telephone": '0800 228 9099', "latitude": 55.968677, "longitude": -3.192192, "address": "Edinburgh"},
+        "Divebunker": {"telephone": '01592 874380', "latitude": 56.066473, "longitude": -3.229619, "address": "Burntisland"},
+        "Marine Quest": {"telephone": '0189 075 2444', "latitude": 55.873526, "longitude": -2.092201, "address": "Eyemouth"},
         }
 
     for divesite, divesite_data in divesitelist.items():

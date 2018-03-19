@@ -1,6 +1,7 @@
  #map {
         height: 600px;
         width: 800px;
+        margin-bottom: 100px;
 
        }
 
@@ -18,7 +19,15 @@
         height: 500px;
         overflow: auto;
         margin-right: 50px;
+
     }
+
+
+#listItem {
+
+    cursor: pointer;
+}
+
 
     #clubTitle {
 
