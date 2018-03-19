@@ -39,10 +39,10 @@
 
     <strong>
         {% if user and not user.is_anonymous %}
-        <a>Hello, {{ user.get_full_name }}!</a>
+        <h1>Hello, {{ user.get_full_name }}!</h1>
         {% else %}
         {% endif %}
-        <a> Welcome to ScotDives!</a>
+        <h1> Welcome to ScotDives!</h1>
     </strong>
 </head>
 
