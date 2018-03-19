@@ -12,7 +12,6 @@
 	padding-top: 50px;
     background-color: rgb(40, 46, 120);
     margin-left: 100px;
-    margin-right: 100px;
     margin-top: 50px;
     color: white
 }
@@ -24,7 +23,7 @@
 	padding-bottom: 50px;
 	padding-top: 50px;
     background-color: rgb(40, 46, 120);
-    margin-left: 50px;
+    margin-left: 100px;
     margin-top: 50px;
     color: white
 }
@@ -66,7 +65,7 @@ h3 {
 }
 
 img {
-    
+
     width: 100%;
 
     }
