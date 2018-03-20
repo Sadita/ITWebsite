@@ -1,12 +1,6 @@
 {% extends 'scotDives/base.html' %}
 {% load staticfiles %}
-
-{% block title_block %}
-    ScotDives
-{% endblock %}
-
 {% block body_block %}
-
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/divemap.css' %}" />
 </head>
@@ -14,12 +8,16 @@
 <div>
     <img src="{% static "images/IMG_0002.jpg" %}" alt="Picture of scotland" />
 </div>
-        <h1>
-            Dive Map
-        </h1>
+
+  <h1 id="bannername">Dive Map</h1>
+
+    <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
+    rel="stylesheet">
+<div class="jumbotron">
     <div class="content" id = "content-dimension">
         <div id="map"></div>
     </div>
+  </div>
     <script>
       function initMap() {
         var uluru = {lat: 56.279647, lng: -2.592236};
@@ -51,7 +49,6 @@
       }
 
     </script>
-
 
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDSUTagss3J4yDnZKDpKpLsKBFQyOwADYo&callback=initMap">

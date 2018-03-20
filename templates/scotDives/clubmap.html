@@ -1,10 +1,6 @@
 {% extends 'scotDives/base.html' %}
 {% load staticfiles %}
 
-{% block title_block %}
-    ScotDives
-{% endblock %}
-
 {% block body_block %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/club.css' %}" />
@@ -14,9 +10,10 @@
 <div>
     <img src="{% static "images/IMG_0002.jpg" %}" alt="Picture of scotland" width="1100" height="400"/>
 </div>
-        <h1>
-            Club Map
-        </h1>
+        <h1 id="bannername">Club Map</h1>
+<link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
+    rel="stylesheet">
+<div class="jumbotron">
 
     <div class="content" id = "content-dimension">
             <div class="row">
@@ -38,6 +35,7 @@
                 </div>
             </div>
     </div>
+  </div>
     <script>
 
         var marker;

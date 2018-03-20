@@ -1,6 +1,6 @@
     #map {
         height: 750px;
-        width: 750px;
+        width: 1000px;
        }
 
     .content {
@@ -12,6 +12,11 @@
 
     #content-dimension {
         height: calc(100vh - 94px);
+    }
+
+    #bannername {
+
+    text-indent: 10px;
     }
 
     h1 {
