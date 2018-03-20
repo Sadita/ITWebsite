@@ -46,9 +46,9 @@ def populate():
                                                   "lack of current. For the second entry point, walk along the grassy "
                                                   "path leading from the parking area until you reach a sandy slope down "
                                                   "to the water. This entry point quickly leads to a boulder reef at "
-                                                  "around 20m depth.\n\nDifficulty Level: ??????????????????????? \n\nDepth: "
-                                                 "\n\nAvailable Parking: On site in front of first entry point",
-                                                 "image": "images/isleofman.jpg"},
+                                                  "around 20m depth.\n\nDifficulty Level: Sports Diver and above \n\nDepth: "
+                                                 ">50m\n\nAvailable Parking: On site in front of first entry point",
+                                                 "image": "images/slates.jpg"},
                     "Isle of Mull": {"rating": 3.5, "latitude": 56.459406, "longitude": -6.028123,
                                  "description": "You are guaranteed to encounter a plethora of marine life while diving in "
                                                 "the Sound of Mull. Nudibranchs, anemones, sunstars, deadmen’s fingers are "
