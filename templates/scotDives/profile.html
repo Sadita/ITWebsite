@@ -31,7 +31,10 @@
 				 height="260"
 				 alt="{{selecteduser.username}}" />
 		{% else %}
-			You have not uploaded a photograph
+			<img src="{% static "images/blank_pp.jpg" %}"
+				 width="220"
+				 height="260"
+				 alt="{{selecteduser.username}}" />
 		{% endif %}
 	</div>
 	<div>
@@ -60,7 +63,7 @@
 	</div>
 </div>
 	<div>
-		<button class="btn btn-primary" data-user = "{{ selecteduser }}" data-url = "{% url 'delete_account' %}" id="delete-account">Delete Account</button>
+		<button class="btn btn-primary" data-url = "{% url 'delete_account' %}" id="delete-account">Delete Account</button>
 	</div>
 
 {% endblock %}

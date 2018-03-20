@@ -17,11 +17,9 @@ $(".remove-favorite").click(function(e){
                 method: 'POST',
                 data: {
                     csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                    user: $(this).attr(data-user),
                 },
                 success: function(response){
 					location.reload()
-
                 }
         })
     })

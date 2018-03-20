@@ -300,13 +300,10 @@ def delete_account(request):
         try:
             UserProfile.objects.get(user=request.user).delete()
             print("UP deleted")
+            request.user.delete()
+            print("User deleted")
         except UserProfile.DoesNotExist:
             print("User Profile does not exist")
-        try:
-            User.objects.get(id=request.user.id).delete()
-            print("User deleted")
-        except:
-            print("User does not exist")
 
     return HttpResponse('')
 
@@ -314,4 +311,3 @@ def delete_account(request):
 class PictureCreate(CreateView):
     model = Picture
     fields = ['location', 'description', 'pic']
-
