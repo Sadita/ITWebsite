@@ -18,7 +18,7 @@
             <div class="avg-rating">
                 <div class="row">
                     <div class="col-md-2">
-                        <div id = "avg-rating"></div>
+                        <div id = "avg-rating" data-score = "{{ divesite.rating }}"></div>
                     </div>
                     <div class="col-md-2">
                         <strong>{{ reviews.count }} ratings</strong>
@@ -43,7 +43,7 @@
                     {% if user.is_authenticated %}
                         <div class="row">
                             <div class="col-md-12 add-my-list">
-                                <button class="btn btn-primary" id="add-my-list">Add to My Dive List</button>
+                                <button class="btn btn-primary" data-id = "{{ divesite.id }}" data-url = "{% url 'add_my_list' %}" id="add-my-list">Add to My Dive List</button>
                             </div>
                         </div>
                     {% endif %}
@@ -56,10 +56,10 @@
                                 <textarea name="comment" id="comment" cols="50"></textarea>
                                 <div class="row">
                                     <div class="col-md-8">
-                                        <div data-score = "{{ user_rating }}" id = "user-rating"></div>
+                                        <div data-score = "{{ user_rating }}" data-id = "{{ divesite.id }}" data-url = "{% url 'review' %}" id = "user-rating"></div>
                                     </div>
                                     <div class="col-md-3">
-                                        <button class="btn btn-primary" id="comment-submit">Submit</button>
+                                        <button class="btn btn-primary" id="comment-submit" data-id = "{{ divesite.id }}" data-url="{% url 'review' %}">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -113,74 +113,8 @@
     {% endif %}
 
 </div>
-
 {% endblock %}
 
 {% block script_block %}
-<script>
-    $('#avg-rating').raty({
-        starType: 'i',
-        readOnly: true,
-        score: {{ divesite.rating }}
-    });
-
-    $('.all-reviews').raty({
-        starType: 'i',
-        readOnly: true,
-    });
-
-    $('#user-rating').raty({
-        starType: 'i',
-        click: function(score, evt){
-            $.ajax({
-                url: "{% url 'review' %}",
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                    divesite_id: "{{ divesite.id }}",
-                    rating: score,
-                },
-                success: function(response){
-                    console.log(response.avg_rating);
-                    $('#avg-rating').raty('set', {'score': response.avg_rating});
-                }
-            })
-         }
-    });
-
-    $("#comment-submit").click(function(){
-        $.ajax({
-            url: "{% url 'review' %}",
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                    divesite_id: "{{ divesite.id }}",
-                    comment: $("#comment").val(),
-                },
-                success: function(response){
-                    location.reload()
-                }
-        })
-    })
-
-    $("#add-my-list").click(function(){
-        $.ajax({
-            url: "{% url 'add_my_list' %}",
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                    divesite_id: "{{ divesite.id }}",
-                },
-                success: function(response){
-                    $("#alert-success").html("Successfully Added to Future Dive List");
-                    $("#alert-success").show();
-                    setTimeout(function(){
-                        $("#alert-success").hide();
-                    }, 1000)
-
-                }
-        })
-    })
-
-</script>
+<script src="{% static 'scripts/divesite.js' %}"></script>
 {% endblock %}
