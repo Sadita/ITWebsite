@@ -4,7 +4,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'itWebsite.settings')
 import django
 
 django.setup()
-from scotDives.models import DiveSite, DiveClub
+from scotDives.models import DiveSite, DiveClub, Picture
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from scotDives.models import UserProfile
@@ -83,6 +83,14 @@ def populate():
         "Imam": {"first_name": "Imma", "last_name": "Reiza", "email": "2274277R@student.gla.ac.uk", "password": make_password("IRGlasgow")},
         }
 
+    pic = {
+        "slates.jpg": {"description": "View from The Slates", "location": "The Slates"},
+        "fifeness.jpg": {"description": "Fife Ness at low tide", "location": "Fife Ness"},
+        "islemull.jpg": {"description": "Shuna Wreck", "location": "Sound of Mull"},
+        "scotland.jpg": {"description": "View over Isle of Mull", "location": "Isle of Mull"},
+        "IMG_0002.jpg": {"description": "View over Kentallen Pier", "location": "Kentallen Wall"},
+    }
+
     for divesite, divesite_data in divesitelist.items():
         c = add_site(divesite, divesite_data["rating"], divesite_data["latitude"], divesite_data["longitude"],
                      divesite_data["description"], divesite_data["image"])
@@ -102,6 +110,9 @@ def populate():
 
     for h in User.objects.all():
         print(" - {0}".format(str(h)))
+
+    for pic, pic_data in pic.items():
+        pic = add_picture(pic, pic_data["description"], pic_data["location"])
 
 def add_site(name, rating, latitude, longitude, description, image):
     c = DiveSite.objects.get_or_create(name=name)[0]
@@ -131,6 +142,12 @@ def add_user(username, first_name, last_name, email, password):
     username.save()
     return username
 
+def add_picture(pic, description, location):
+    pic = Picture.objects.get_or_create(pic=pic)[0]
+    pic.description = description
+    pic.location = location
+    pic.save()
+    return pic
 
 if __name__ == '__main__':
     print("Starting scotDives population script...")
