@@ -30,7 +30,8 @@ def populate():
                                     			"pierce the water around you as you descend. This is an excellent "
                                     			"location if you want to try diving with seals. The resident seals "
                                     			"will enjoy nipping at your fins when you move further out from the "
-                                    			"Isle. \n\nDifficulty Level: ??????????????????????? \n\nDepth: >40m "
+                                    			"Isle. \n\nDifficulty Level: Suitable for Sports Diver and higher \n\n"
+                                          "Depth: >40m "
                                                  "\n\nAvailable Parking: Parking available at harbour in Anstruther",
                                                  "image": "images/isleofman.jpg"},
                     "Kentallen Wall": {"rating": 3, "latitude": 56.663384, "longitude": -5.252388,
