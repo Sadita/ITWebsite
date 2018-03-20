@@ -45,7 +45,7 @@ def logout(request):
 def index(request):
     context_dict = {}
     # request.session.set_test_cookie()
-    divesite_list = DiveSite.objects.order_by('-rating')
+    divesite_list = DiveSite.objects.order_by('-rating')[:3]
     # page_list = Page.objects.order_by('-views')[:5]
     context_dict['divesites'] = divesite_list
 
