@@ -294,6 +294,23 @@ def remove_from_my_list(request, divesite_id):
             return HttpResponse('')
 
 
+@login_required
+def delete_account(request):
+    if request.method == 'POST':
+        try:
+            UserProfile.objects.get(user=request.user).delete()
+            print("UP deleted")
+        except UserProfile.DoesNotExist:
+            print("User Profile does not exist")
+        try:
+            User.objects.get(id=request.user.id).delete()
+            print("User deleted")
+        except:
+            print("User does not exist")
+            
+    return render(request, 'scotDives/index.html', {})
+
+
 class PictureCreate(CreateView):
     model = Picture
     fields = ['location', 'description', 'pic']

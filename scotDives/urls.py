@@ -18,6 +18,7 @@ urlpatterns = [
     url(r'^review/$', views.rate, name='review'),
     url(r'^add-my-list/$', views.add_my_list, name='add_my_list'),
     url(r'^remove-my-list/(?P<divesite_id>[\w\-]+)/$', views.remove_from_my_list, name='remove_from_my_list'),
+    url(r'^delete-account/$', views.delete_account, name='delete_account'),
 
     #--imam--
     #url(r'^login/', views.login, name='login'),
