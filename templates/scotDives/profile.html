@@ -60,40 +60,12 @@
 	</div>
 </div>
 	<div>
-		<button class="btn btn-primary" id="delete-account">Delete Account</button>
+		<button class="btn btn-primary" data-user = "{{ selecteduser }}" data-url = "{% url 'delete_account' %}" id="delete-account">Delete Account</button>
 	</div>
 
 {% endblock %}
 
 
 {% block script_block %}
-<script>
-	$(".remove-favorite").click(function(e){
-		e.preventDefault();
-		$.post({
-			url: $(this).attr('href'),
-			data: {
-			csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val()
-			},
-			success: function(){
-				location.reload()
-			}
-		})
-	})
-
-	$("#delete-account").click(function(){
-        $.ajax({
-            url: "{% url 'delete_account' %}",
-                method: 'POST',
-                data: {
-                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
-                    user: "{{ selecteduser }}",
-                },
-                success: function(response){
-					location.reload()
-
-                }
-        })
-    })
-</script>
+<script src="{% static 'scripts/profile.js' %}"></script>
 {% endblock %}
