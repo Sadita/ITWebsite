@@ -50,7 +50,16 @@ def populate():
                                                  "\n\nAvailable Parking: On site in front of first entry point",
                                                  "image": "images/isleofman.jpg"},
                     "Isle of Mull": {"rating": 3.5, "latitude": 56.459406, "longitude": -6.028123,
-                                 "description": "a descritopn  for SS Afton", "image": "images/ssafton.jpg"}
+                                 "description": "You are guaranteed to encounter a plethora of marine life while diving in "
+                                                "the Sound of Mull. Nudibranchs, anemones, sunstars, deadmen’s fingers are "
+                                                " just a few of the creatures you will come across while diving in this "
+                                                " stretch of water. The Shuna wreck is a must-see, as it is teeming with "
+                                                "marine life. The wreck can be founda at 30m but be aware of the silty seabed"
+                                                "- it is very easy to disturb visibility down here.\n\nDifficulty Level: "
+                                                "The shore dives on the Isle of Mull are suitable for all levels. It is "
+                                                "recommended that only Sports Divers and above should attempt to visit the "
+                                                "Shuna wreck, given its depth. \n\nDepth: >40m\n\nAvailable Parking: "
+                                                "Plenty of locations across the island.", "image": "images/islemull.jpg"}
                     }
 
     diveclublist = {
