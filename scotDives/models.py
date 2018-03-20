@@ -69,15 +69,15 @@ class Review(models.Model):
     date = models.DateTimeField(null=True)
 
     def __str__(self):
-        return self.rating
+        return str(self.rating)
 
 
 class FutureDive(models.Model):
-    divesite = models.ForeignKey(DiveSite)
     user = models.ForeignKey(User)
+    divesite = models.ForeignKey(DiveSite)
 
     def __str__(self):
-        return self.rating
+        return self.divesite.name
 
 
 

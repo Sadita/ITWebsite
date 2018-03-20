@@ -307,8 +307,8 @@ def delete_account(request):
             print("User deleted")
         except:
             print("User does not exist")
-            
-    return render(request, 'scotDives/index.html', {})
+
+    return HttpResponse('')
 
 
 class PictureCreate(CreateView):
