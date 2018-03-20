@@ -35,10 +35,16 @@ def populate():
                                                  "\n\nAvailable Parking: Parking available at harbour in Anstruther",
                                                  "image": "images/isleofman.jpg"},
                     "Kentallen Wall": {"rating": 3, "latitude": 56.663384, "longitude": -5.252388,
-                                       "description": "a descritopn  for Kentallen Wall\n\nDifficulty Level: "
-                                                "??????????????????????? \n\nDepth: ?????????m"
-                                                 "\n\nAvailable Parking: In the Holly Tree carpark in front of the pier",
-                                                "image": "images/kentallenwall.jpg"},
+                                       "description": "The pier makes this dive site an excellent location for training "
+                                                "beginners. At high tide, simply sit down on the slip wall and slip into"
+                                                " the water. The seabed here is sandy and teeming with small crabs and "
+                                                "large sea snails. Be sure to check out the large boiler near the pier "
+                                                "wall - many a lobster has made it its home. Once you have passed the "
+                                                "pier wall, head in the direction of the green buoy - This will lead you "
+                                                "to the underwater wall. The top of the wall can be found at 15m depth "
+                                                "and extends down to 32m at its base.\n\nDifficulty Level: "
+                                                "Suitable for beginners\n\nDepth: 32m\n\nAvailable Parking: In the Holly"
+                                                " Tree carpark in front of the pier", "image": "images/kentallen.jpg"},
                     "The Slates (Ballachulish)": {"rating": 2, "latitude": 56.686069, "longitude": -5.208013,
                                                   "description": "There are several entry points here. From the parking "
                                                   "area, you can walk straight towards the loch and down the slope into "
