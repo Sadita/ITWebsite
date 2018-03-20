@@ -79,8 +79,8 @@
                             <ul style="list-style-type:none">
                                 {% for divesite in divesites %}
                                     <li>
-                                    <a href="{% url 'show_site' divesite.slug %}">{{ divesite.name }}</a>
-                                        <a> : {{ divesite.rating }}</a>
+                                        <a href="{% url 'show_site' divesite.slug %}">{{ divesite.name }} </a>
+                                        <a data-score="{{ divesite.rating }}" class = "avg-rating"></a>
                                     </li>
                                 {% endfor %}
                             </ul>
@@ -115,4 +115,14 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block script_block %}
+<script>
+    $('.avg-rating').raty({
+        starType: 'i',
+        readOnly: true
+
+    });
+</script>
 {% endblock %}
