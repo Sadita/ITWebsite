@@ -16,3 +16,19 @@ h4 {
 ul.a {
     list-style-type: circle;
 }
+
+#delete-account {
+
+    float: right;
+    position: absolute;
+    top: 200px;
+    right: 32px;
+}
+
+#futurelist {
+
+    border: 2px solid blue;
+    float: center;
+    top: 100px;
+    left: 100px;
+}
