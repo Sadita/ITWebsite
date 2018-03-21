@@ -1,7 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, render_to_response, redirect
-# from scotDives.models import DiveList
-# from scotDives.forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from django.contrib.auth import authenticate, login, logout
 from django.core.urlresolvers import reverse
 from django.contrib.auth.decorators import login_required
@@ -9,68 +7,63 @@ from datetime import datetime
 from django.shortcuts import render_to_response, redirect, render
 from django.contrib.auth.models import User
 from scotDives.forms import UserProfileForm, UserReviewForm
-#from django.contrib.auth import logout as auth_logout
-# from django.template.context import RequestContext
 from scotDives.models import DiveClub, DiveSite, UserProfile, Picture, Review, FutureDive
 from django.views.generic.edit import CreateView
 from django.db.models import Avg
 
 
+# The function to render the template of the home page.
 def index(request):
     context_dict = {}
-    # request.session.set_test_cookie()
+
+    # For the top three dives based on user rating
     divesite_list = DiveSite.objects.order_by('-rating')[:3]
-    # page_list = Page.objects.order_by('-views')[:5]
+
     context_dict['divesites'] = divesite_list
-
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/index.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+
+    # Return response back to the user.
     return response
 
 
+# Sends the dive locations and the details to the map of divesites
 def divemap(request):
     all_diveSpots = DiveSite.objects.all()
     context_dict = {'all_diveSpots' : all_diveSpots,}
-
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/divemap.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+
+    # Return response back to the user.
     return response
 
 
+# To render the template for the list of dive sites.
 def divesites(request):
     context_dict = {}
-    # request.session.set_test_cookie()
+
+    # Divesites are ordered with highest rated first
     divesite_list = DiveSite.objects.order_by('-rating')
-    # page_list = Page.objects.order_by('-views')[:5]
     context_dict['divesites'] = divesite_list
 
     response = render(request, 'scotDives/divesitelist.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+    # Return response back to the user.
     return response
 
 
+# To render each of the individual dive site pages
 def show_site(request, divesite_name_slug):
     context_dict = {}
     try:
         # adding the divesite model to the dictionary
         divesite = DiveSite.objects.get(slug=divesite_name_slug)
         context_dict['divesite'] = divesite
-
     except DiveSite.DoesNotExist:
         context_dict['divesite'] = None
 
     try:
+        # All reviews on this dive site added to context dictionary in order of date,
+        # i.e. the most recent user review comes on top of the list of reviews.
         reviews = Review.objects.filter(divesite=divesite).order_by('-date')
         context_dict['reviews'] = reviews
-
     except Review.DoesNotExist:
         context_dict['reviews'] = None
 
@@ -79,69 +72,57 @@ def show_site(request, divesite_name_slug):
             # adding the user rating from the Review model to the dictionary
             user_rating = Review.objects.get(divesite=divesite, user=request.user).rating
             context_dict['user_rating'] = user_rating
-
         except Review.DoesNotExist:
             context_dict['user_rating'] = 0
 
         response = render(request, 'scotDives/divesite.html', context=context_dict)
-        # Return response back to the user, updating any cookies that need changed.
+
+        # Return response back to the user.
         return response
 
     else:
         response = render(request, 'scotDives/divesite.html', context=context_dict)
-        # Return response back to the user, updating any cookies that need changed.
+
+        # Return response back to the users.
         return response
 
 
+# Sends the locations and the details to the map of dive clubs
 def clubmap(request):
     all_diveClubs = DiveClub.objects.all()
     context_dict = {'all_diveClubs' : all_diveClubs,}
-
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/clubmap.html', context=context_dict)
+
     # Return response back to the user, updating any cookies that need changed.
     return response
 
 
+# Sends the location of the picture file and the corresponding details to the photo gallery template
 def photogallery(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
     all_pictures = Picture.objects.all()
     context_dict = {'all_pictures': all_pictures}
-
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/photogallery.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+
+    # Return response back to the user.
     return response
 
 
+# Search function that returns all dive sites that match the query
 def search(request):
     context_dict = {}
-    # request.session.set_test_cookie()
     divesite_list = DiveSite.objects.order_by('-name')
-    # page_list = Page.objects.order_by('-views')[:5]
-
     query = request.GET.get("q")
     if query:
         divesite_list = divesite_list.filter(name__icontains=query)
         print(divesite_list)
         context_dict['divesites'] = divesite_list
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
 
     response = render(request, 'scotDives/search.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+    # Return response back to the user.
     return response
 
 
+# Function that lets the user create a profile page once they have create a ScotDives account
 @login_required
 def register_profile(request):
     form = UserProfileForm()
@@ -159,6 +140,7 @@ def register_profile(request):
     return render(request, 'scotDives/profile_registration.html', context_dict, locals())
 
 
+# Returns the user's profile with their My Dives list and profile picture
 @login_required
 def profile(request, username):
     try:
@@ -167,7 +149,10 @@ def profile(request, username):
         return redirect('index')
     userprofile = UserProfile.objects.get_or_create(user=user)[0]
     form = UserProfileForm({'picture': userprofile.picture})
+
+    # List of future dive sites added by the user to the profile
     favorite_divesites = FutureDive.objects.filter(user=request.user)
+
     if request.method == 'POST':
         form = UserProfileForm(request.POST, request.FILES, instance=userprofile)
         if form.is_valid():
@@ -179,48 +164,40 @@ def profile(request, username):
                                                       'form': form, 'favorite_divesites': favorite_divesites})
 
 
+# Render the contact us page of the website
 def contact(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
     context_dict = {}
-
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/contact.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+    # Return response back to the user.
     return response
 
 
+# Render the site map page of the website
 def sitemap(request):
-    # request.session.set_test_cookie()
-    # page_list = Pages.objects
-    # page_list = Page.objects.order_by('-views')[:5]
     context_dict = {}
-
-    # Call the helper function to handle the cookies
-    # visitor_cookie_handler(request)
-    # context_dict['visits'] = request.session['visits']
-
     response = render(request, 'scotDives/sitemap.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
+    # Return response back to the user.
     return response
 
 
+# This function adds the ratings and comments on a dive site page submitted by the user
 @login_required
 def rate(request):
 
+    # When user submits a rating or a comment, retrieve the divesite_id from the ajax call.
     if request.method == 'POST':
         form = UserReviewForm(request.POST)
         divesite_id = request.POST.get('divesite_id')
+        # Get the unique review from the composite key of divesite and user
         try:
             review = Review.objects.get(divesite_id=divesite_id, user_id=request.user.id)
         except Review.DoesNotExist:
             review = None
 
         if form.is_valid():
+            # If review exists get the submitted rating and comment  from the form;
+            # get the current date, that is, the date of of the review submission,
+            # and save to the Review model.
             if review:
                 if request.POST.get('rating'):
                     review.rating = request.POST.get('rating')
@@ -234,20 +211,27 @@ def rate(request):
                 review.divesite = DiveSite.objects.get(id=divesite_id)
                 review.user = request.user
                 review.save()
-                
+
+            # Compute the average of all the ratings submitted by the users and save to the
+            # "rating" field of the divesite model.
             avg_rating = Review.objects.filter(divesite_id=divesite_id).aggregate(Avg('rating'))
             divesite = DiveSite.objects.get(id=divesite_id)
             divesite.rating = avg_rating['rating__avg']
             divesite.save()
 
+    # Return response back to the ajax function that called this function.
     return JsonResponse({'avg_rating': divesite.rating})
 
 
+# This function adds the divesites to user's future dive list (favorites)
 @login_required
 def add_my_list(request):
     if request.method == 'POST':
         try:
+            # Get the divesite selected/added by the user from the ajax call.
             divesite = DiveSite.objects.get(id=request.POST.get('divesite_id'))
+
+            # Get or create the future dive site selected by the user
             try:
                 FutureDive.objects.get(divesite=divesite, user=request.user)
             except FutureDive.DoesNotExist:
@@ -256,10 +240,12 @@ def add_my_list(request):
             return HttpResponse('')
 
 
+# This function deletes divesites from user's future dive list (favorites)
 @login_required
 def remove_from_my_list(request, divesite_id):
     if request.method == 'POST':
         try:
+            # Get the divesite selected (to be deleted) by the user from the ajax call.
             divesite = DiveSite.objects.get(id=divesite_id)
             try:
                 FutureDive.objects.get(divesite=divesite, user=request.user).delete()
@@ -270,10 +256,13 @@ def remove_from_my_list(request, divesite_id):
             return HttpResponse('')
 
 
+# This function deletes the user's account when user clicks the delete account button
 @login_required
 def delete_account(request):
     if request.method == 'POST':
         try:
+            # Get the user from the ajax call triggered by the delete account button.
+            # Delete user profile and then delete the user.
             UserProfile.objects.get(user=request.user).delete()
             print("UP deleted")
             request.user.delete()
