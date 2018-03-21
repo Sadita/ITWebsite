@@ -16,32 +16,6 @@ from django.views.generic.edit import CreateView
 from django.db.models import Avg
 
 
-def login(request):
-    # context = RequestContext(request, {
-    #     'request': request, 'user': request.user})
-    # return render_to_response('login.html', context_instance=context)
-    context_dict = {}
-    response = render(request, 'scotDives/login.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
-    return response
-
-
-@login_required(login_url='/')
-def home(request):
-    context_dict = {}
-    response = render(request, 'scotDives/home.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
-    return response
-
-
-
-def logout(request):
-    auth_logout(request)
-    return redirect('/')
-
-#imam---
-
-
 def index(request):
     context_dict = {}
     # request.session.set_test_cookie()
