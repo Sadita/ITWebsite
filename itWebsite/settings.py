@@ -91,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'itWebsite.wsgi.application'
 
-/A/Atabase
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
@@ -157,8 +156,8 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = [STATIC_DIR, ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+STATICFILES_DIRS = [STATIC_DIR,]
+STATIC_ROOT = os.path.join('/home/scotDives/ITWebsite/staticroot/')
 # Variables to set up media file hosting
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'

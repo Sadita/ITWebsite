@@ -41,4 +41,5 @@ urlpatterns = [
     #--social-login--
     url('', include('social.apps.django_app.urls', namespace='social')),	
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+#urlpatterns += static(settings.STATIC_URL, 'serve', document_root=settings.STATIC_ROOT)
