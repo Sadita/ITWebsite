@@ -22,14 +22,15 @@ from scotDives import views
 from registration.backends.simple.views import RegistrationView
 from scotDives.forms import UserForm
 
+
 # Create a new class that redirects the user to the index page, #if successful at logging
 class MyRegistrationView(RegistrationView):
     def get_success_url(self, user):
         return '/scot-dives/profile_registration/'
 
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
-
     url(r'scot-dives/', include('scotDives.urls')),
     # above maps any URLs starting
     # with scot-dives/ to be handled by
@@ -39,6 +40,9 @@ urlpatterns = [
     url(r'^scot-dives/', include('registration.backends.simple.urls')),
 
     #--social-login--
-    url('', include('social.apps.django_app.urls', namespace='social')),	
+    url('', include('social.apps.django_app.urls', namespace='social')),
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

@@ -17,52 +17,55 @@
 <link href="http://v4-alpha.getbootstrap.com/examples/signin/signin.css"
 	rel="stylesheet">
 <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/profile.css' %}" />
-<div class="jumbotron">
-<h1>{{ selecteduser.first_name }} {{ selecteduser.last_name }}'s Profile</h1>
-
-<div class="row">
-	<div class="column">
-		<div>
-			{% if userprofile.picture.url|length > 0 %}
-			<img src="{{ MEDIA_URL }}{{ userprofile.picture.url }}"
-				 width="220"
-				 height="260"
-				 alt="{{selecteduser.username}}" />
-			{% else %}
-			<img src="{% static "images/blank_pp.jpg" %}"
-				 width="220"
-				 height="260"
-				 alt="{{selecteduser.username}}" />
-			{% endif %}
-		</div>
-		<div>
-		{% if selecteduser.username == user.username %}
-		<form method="post" action="." enctype="multipart/form-data">
-			{% csrf_token %}
-			{{ form.as_p }}
-			<input type="submit" value="Update Photograph" />
-		</form>
-		{% endif %}
-	</div>
-	</div>
-    <div class="column">
-	<div class="card bg-secondary" id="futurelist">
-		<h4> My Future Dives List</h4>
-		{% for favorite in favorite_divesites %}
-			<ul class="a">
-				<li>
-					<a href="{% url 'show_site' favorite.divesite.slug %}">{{ favorite.divesite.name }}</a>
-					<a href="{% url 'remove_from_my_list' favorite.divesite.id %}"
-					   class="remove-favorite" id="fav"><i class="fas fa-trash-alt"></i></a>
-				</li>
-			</ul>
-		{% endfor %}
-	</div>
+<div class="container">
+	<h1>{{ selecteduser.first_name }} {{ selecteduser.last_name }}'s Profile</h1>
+	<div class="jumbotron" id ="container-dimension">
+			<div class="row">
+				<div class="col-md-3">
+					<div>
+						{% if userprofile.picture.url|length > 0 %}
+						<img src="{{ MEDIA_URL }}{{ userprofile.picture.url }}"
+							 width="220"
+							 height="260"
+							 alt="{{selecteduser.username}}" />
+						{% else %}
+						<img src="{% static "images/blank_pp.jpg" %}"
+							 width="220"
+							 height="260"
+							 alt="{{selecteduser.username}}" />
+						{% endif %}
+					</div>
+					<div>
+						{% if selecteduser.username == user.username %}
+						<form method="post" action="." enctype="multipart/form-data">
+							{% csrf_token %}
+							{{ form.as_p }}
+							<input type="submit" value="Update Photograph" />
+						</form>
+						{% endif %}
+					</div>
+				</div>
+				<div class="col-md-3">
+					<div class="card bg-secondary" id="futurelist">
+						<h4> My Future Dives List</h4>
+						{% for favorite in favorite_divesites %}
+							<ul class="a">
+								<li>
+									<a href="{% url 'show_site' favorite.divesite.slug %}">{{ favorite.divesite.name }}</a>
+									<a href="{% url 'remove_from_my_list' favorite.divesite.id %}"
+									   class="remove-favorite" id="fav"><i class="fas fa-trash-alt"></i></a>
+								</li>
+							</ul>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+			<div>
+				<button class="btn btn-primary" data-url = "{% url 'delete_account' %}" id="delete-account">Delete Account</button>
+			</div>
 	</div>
 </div>
-	<div>
-		<button class="btn btn-primary" data-url = "{% url 'delete_account' %}" id="delete-account">Delete Account</button>
-	</div>
+
 
 {% endblock %}
 

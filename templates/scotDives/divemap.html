@@ -1,5 +1,6 @@
 {% extends 'scotDives/base.html' %}
 {% load staticfiles %}
+
 {% block body_block %}
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'stylesheets/divemap.css' %}" />
@@ -18,7 +19,12 @@
         <div id="map"></div>
     </div>
   </div>
-    <script>
+
+{% endblock %}
+
+{% block script_block %}
+
+<script>
       function initMap() {
         var uluru = {lat: 56.279647, lng: -2.592236};
         var map = new google.maps.Map(document.getElementById('map'), {

@@ -34,9 +34,9 @@ SECRET_KEY = 'yvmiz0carwiauwds4$7)brr2e*pm)fo&g&9o_+s27@t(hn706)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# list of hosts for the website
+ALLOWED_HOSTS = ['scotdives.pythonanywhere.com', 'localhost', '127.0.0.1']
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['scotdives.pythonanywhere.com',]
 
 # Application definition
 
@@ -91,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'itWebsite.wsgi.application'
 
-/A/Atabase
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
@@ -135,7 +134,6 @@ REGISTRATION_AUTO_LOGIN = True
 LOGIN_REDIRECT_URL = 'index'
 # The page users are directed to if they are not logged in,
 # and are trying to access pages requiring authentication
-#LOGIN_URL = '/accounts/login/'
 LOGIN_URL = '/scot-dives/login/'
 
 
@@ -158,7 +156,11 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+
+# Following line of code was for serving static files on PythonAnywhere and it's commented
+# out so that to the website running on localhost can load static files
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
 # Variables to set up media file hosting
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
@@ -171,21 +173,16 @@ SITE_ID = 1
 #-----(social login start)-----
 
 AUTHENTICATION_BACKENDS = (
-    #'social.backends.facebook.FacebookOAuth2',
     'social.backends.google.GoogleOAuth2',
-    #'social.backends.twitter.TwitterOAuth',
-	
 	'social_core.backends.twitter.TwitterOAuth',
-
     'social_core.backends.facebook.FacebookOAuth2',
-
     'django.contrib.auth.backends.ModelBackend',
 )
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'
 SOCIAL_AUTH_LOGIN_URL = '/'
 
-#facebook login
+# facebook login
 SOCIAL_AUTH_FACEBOOK_KEY = '142678796553745'  # App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = '0df8808d9979b1fe72d4aa5e29bd2b33'    # App Secret
 SOCIAL_AUTH_FACEBOOK_APP_NAMESPACE = 'scotdives'
@@ -198,7 +195,7 @@ SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
 }
 # SOCIAL_AUTH_FACEBOOK_API_VERSION = '2.10'
 
-#twitter login
+# twitter login
 SOCIAL_AUTH_TWITTER_KEY = 'd7GqghPSipnSQIkmkDTk2XIkL'
 SOCIAL_AUTH_TWITTER_SECRET = 'VFlmSAC0hd3M3EnXbkzzFvEzZjT1Lua9MPLwU1LE7xhHAa06Z8'
 
@@ -207,7 +204,4 @@ SOCIAL_AUTH_TWITTER_PROFILE_EXTRA_PARAMS = {
     'fields': 'id, name, email'
 }
 
-#13mar
-#SOCIAL_AUTH_LOGIN_ERROR_URL = '/scot-dives/settings/'
-#SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/scot-dives/settings/'
 SOCIAL_AUTH_RAISE_EXCEPTIONS = False

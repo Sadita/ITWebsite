@@ -17,16 +17,22 @@
     {% if divesites %}
         <u1>
             {% for divesite in divesites %}
-                <li>
-                    <ul>
+                <div class="row">
+                     <div class="col-md-3">
                         <a href="{% url 'show_site' divesite.slug %}">{{ divesite.name }}</a>
-                        {{ divesite.rating }}
-                    </ul>
-                </li>
+                     </div>
+                     <div class="col-md-3">
+                        <a data-score="{{ divesite.rating }}" class = "avg-rating"></a>
+                     </div>
+                </div>
             {% endfor %}
         </u1>
     {% else %}
         <strong>No dive sites to display</strong>
     {% endif %}
     </div>
+{% endblock %}
+
+{% block script_block %}
+<script src="{% static 'scripts/base.js' %}"></script>
 {% endblock %}

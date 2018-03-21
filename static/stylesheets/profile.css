@@ -3,11 +3,36 @@ h1 {
     color: white;
     font-family: "Trebuchet MS";
     font-size: 30px;
-    padding-top:10px;
-    text-indent: 50px;
+    padding-top:30px;
+    text-indent: 30px;
     line-height: 1.5;
-    margin-top: 10px;
 }
+
+
+.space-bottom {
+         background-image: url(../images/divesitelist.jpg);
+         height: 100%;
+         background-position: center;
+         background-size: cover;
+         background-repeat: no-repeat;
+         padding: 0px;
+     }
+
+
+     .container {
+        max-width: 950px;
+        margin: auto;
+        background: white;
+        margin-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+     }
+
+    #container-dimension {
+        height: calc(100vh - 94px);
+        margin-bottom: 0px;
+    }
+
 
 h4 {
     text-align: left;
@@ -21,8 +46,8 @@ ul.a {
 
     float: right;
     position: absolute;
-    top: 200px;
-    right: 32px;
+    top: 105px;
+    right: 5px;
 }
 
 #futurelist {
