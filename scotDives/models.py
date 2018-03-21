@@ -4,19 +4,6 @@ from django.contrib.auth.models import User
 from django.conf import settings
 
 
-class DiveSpot(models.Model):
-    name = models.CharField(max_length=250)
-    latitude = models.CharField(max_length=50)
-    longitude = models.CharField(max_length=50)
-    description = models.CharField(max_length=1000)
-    rating = models.IntegerField(default=0)
-    link = models.CharField(max_length=250)
-    picture = models.CharField(max_length=1000)
-
-    def __str__(self):
-        return self.name
-
-
 class DiveSite(models.Model):
     name = models.CharField(max_length=128, unique=True)
     rating = models.FloatField(default=0)
