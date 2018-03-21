@@ -6,3 +6,5 @@ __pycache__/
 media/.DS_Store
 static/.DS_Store
 staticroot/
+.*
+!.gitignore
