@@ -12,15 +12,19 @@ urlpatterns = [
     url(r'^search/', views.search, name='search'),
     url(r'^contact-us/', views.contact, name='contact'),
     url(r'^sitemap/', views.sitemap, name='sitemap'),
+
+    # Registration and account creation
     url(r'^profile_registration', views.register_profile, name='register_profile'),
     url(r'^profile/(?P<username>[\w\-]+)/$', views.profile, name='profile'),
     url(r'^picture/add/$', views.PictureCreate.as_view(), name='picture-add'),
+
+    # For submitting ratings and comments
     url(r'^review/$', views.rate, name='review'),
+
+    # For adding and deleting dive sites to and from favorites
     url(r'^add-my-list/$', views.add_my_list, name='add_my_list'),
     url(r'^remove-my-list/(?P<divesite_id>[\w\-]+)/$', views.remove_from_my_list, name='remove_from_my_list'),
-    url(r'^delete-account/$', views.delete_account, name='delete_account'),
 
-    #--imam--
-    #url(r'^login/', views.login, name='login'),
-    #url(r'^logout/', views.logout, name='logout'),
+    # Delete user account
+    url(r'^delete-account/$', views.delete_account, name='delete_account'),
 ]
