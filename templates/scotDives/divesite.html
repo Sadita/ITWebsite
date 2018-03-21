@@ -53,9 +53,9 @@
                             <div class="col-md-12 review">
                                 <div>Write Comment & Rate {{ divesite.name }}</div>
                                 {% csrf_token %}
-                                <textarea name="comment" id="comment" cols="50"></textarea>
+                                <textarea name="comment" id="comment" cols="40"></textarea>
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-6">
                                         <div data-score = "{{ user_rating }}" data-id = "{{ divesite.id }}" data-url = "{% url 'review' %}" id = "user-rating"></div>
                                     </div>
                                     <div class="col-md-3">
