@@ -35,8 +35,8 @@ SECRET_KEY = 'yvmiz0carwiauwds4$7)brr2e*pm)fo&g&9o_+s27@t(hn706)'
 DEBUG = True
 
 
-#ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['scotdives.pythonanywhere.com',]
+ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = ['scotdives.pythonanywhere.com',]
 
 # Application definition
 
@@ -91,7 +91,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'itWebsite.wsgi.application'
 
-/A/Atabase
 # https://docs.djangoproject.com/en/1.10/ref/settings/#databases
 
 DATABASES = {
@@ -158,7 +157,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [STATIC_DIR, ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static') 
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Variables to set up media file hosting
 MEDIA_ROOT = MEDIA_DIR
 MEDIA_URL = '/media/'
