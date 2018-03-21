@@ -55,7 +55,7 @@ def populate():
          "rating": 5,
          "comment": "The lagoon is a great spot for training beginners. Calm, clear and plenty of small creatures "
                     "to keep us entertained",
-         "date": '2018-03-25 14:40:59'},
+         "date": '2018-03-20 14:40:59'},
         {"username": "Christos",
          "rating": 5,
          "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "

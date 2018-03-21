@@ -16,32 +16,6 @@ from django.views.generic.edit import CreateView
 from django.db.models import Avg
 
 
-def login(request):
-    # context = RequestContext(request, {
-    #     'request': request, 'user': request.user})
-    # return render_to_response('login.html', context_instance=context)
-    context_dict = {}
-    response = render(request, 'scotDives/login.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
-    return response
-
-
-@login_required(login_url='/')
-def home(request):
-    context_dict = {}
-    response = render(request, 'scotDives/home.html', context=context_dict)
-    # Return response back to the user, updating any cookies that need changed.
-    return response
-
-
-
-def logout(request):
-    auth_logout(request)
-    return redirect('/')
-
-#imam---
-
-
 def index(request):
     context_dict = {}
     # request.session.set_test_cookie()
@@ -94,7 +68,7 @@ def show_site(request, divesite_name_slug):
         context_dict['divesite'] = None
 
     try:
-        reviews = Review.objects.filter(divesite=divesite)
+        reviews = Review.objects.filter(divesite=divesite).order_by('-date')
         context_dict['reviews'] = reviews
 
     except Review.DoesNotExist:
@@ -250,8 +224,10 @@ def rate(request):
             if review:
                 if request.POST.get('rating'):
                     review.rating = request.POST.get('rating')
+                    review.date = datetime.now()
                 if request.POST.get('comment'):
                     review.comment = request.POST.get('comment')
+                    review.date = datetime.now()
                 review.save()
             else:
                 review = form.save(commit=False)
