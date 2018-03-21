@@ -31,4 +31,10 @@ ul.a {
     float: center;
     top: 100px;
     left: 100px;
+    width:250px;
+}
+
+#fav {
+
+    color: red;
 }

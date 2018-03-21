@@ -26,9 +26,8 @@ def populate():
     reviews_may = [
         {"username": "Rebecca",
          "rating": 4,
-         "comment": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt "
-                    "ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco "
-                    "laboris nisi ut aliquip ex ea commodo consequat.",
+         "comment": "Such a lovely isle for diving round. Took the club boat across from Anstruther and was in "
+                    "in the water 40 minutes later! Much better than taking the tourist ferry across.",
          "date": '2016-10-25 14:40:59'},
         {"username": "Christos",
          "rating": 5,
@@ -55,7 +54,7 @@ def populate():
         {"username": "Imam",
          "rating": 5,
          "comment": "The lagoon is a great spot for training beginners. Calm, clear and plenty of small creatures "
-                    "to keep them entertained",
+                    "to keep us entertained",
          "date": '2018-03-25 14:40:59'},
         {"username": "Christos",
          "rating": 5,

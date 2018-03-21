@@ -20,24 +20,22 @@
 <div class="jumbotron">
 <h1>{{ selecteduser.first_name }} {{ selecteduser.last_name }}'s Profile</h1>
 
-     <div class="row">
-
-        <div class="column">
-
-	<div>
-		{% if userprofile.picture.url|length > 0 %}
+<div class="row">
+	<div class="column">
+		<div>
+			{% if userprofile.picture.url|length > 0 %}
 			<img src="{{ MEDIA_URL }}{{ userprofile.picture.url }}"
 				 width="220"
 				 height="260"
 				 alt="{{selecteduser.username}}" />
-		{% else %}
+			{% else %}
 			<img src="{% static "images/blank_pp.jpg" %}"
 				 width="220"
 				 height="260"
 				 alt="{{selecteduser.username}}" />
-		{% endif %}
-	</div>
-	<div>
+			{% endif %}
+		</div>
+		<div>
 		{% if selecteduser.username == user.username %}
 		<form method="post" action="." enctype="multipart/form-data">
 			{% csrf_token %}
@@ -46,16 +44,16 @@
 		</form>
 		{% endif %}
 	</div>
-</div>
+	</div>
     <div class="column">
-	<div class="card bg-secondary" id="futurelist" style="width:250px">
+	<div class="card bg-secondary" id="futurelist">
 		<h4> My Future Dives List</h4>
 		{% for favorite in favorite_divesites %}
 			<ul class="a">
 				<li>
 					<a href="{% url 'show_site' favorite.divesite.slug %}">{{ favorite.divesite.name }}</a>
 					<a href="{% url 'remove_from_my_list' favorite.divesite.id %}"
-					   class="remove-favorite" style="color:red"><i class="fas fa-trash-alt"></i></a>
+					   class="remove-favorite" id="fav"><i class="fas fa-trash-alt"></i></a>
 				</li>
 			</ul>
 		{% endfor %}

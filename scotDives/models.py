@@ -28,7 +28,7 @@ class DiveSite(models.Model):
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)
-        self.rating = round(self.my_float, 2)
+        self.rating = round(self.rating, 2)
         super(DiveSite, self).save(*args, **kwargs)
 
     class Meta:

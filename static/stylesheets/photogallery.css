@@ -1,9 +1,25 @@
 .albums-container container-fluid {
-        height: calc(100vh - 94px);
+    height: calc(100vh - 94px);
 
  }
 
 img {
     width: 100%;
     margin-bottom: 30px;
+}
+
+#div1 {
+
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    display: table;
+
+}
+
+#div2 {
+
+    width:400px;
+    margin-bottom:40px;
+
 }
