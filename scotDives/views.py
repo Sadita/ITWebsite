@@ -94,7 +94,7 @@ def show_site(request, divesite_name_slug):
         context_dict['divesite'] = None
 
     try:
-        reviews = Review.objects.filter(divesite=divesite)
+        reviews = Review.objects.filter(divesite=divesite).order_by('-date')
         context_dict['reviews'] = reviews
 
     except Review.DoesNotExist:
@@ -250,8 +250,10 @@ def rate(request):
             if review:
                 if request.POST.get('rating'):
                     review.rating = request.POST.get('rating')
+                    review.date = datetime.now()
                 if request.POST.get('comment'):
                     review.comment = request.POST.get('comment')
+                    review.date = datetime.now()
                 review.save()
             else:
                 review = form.save(commit=False)
